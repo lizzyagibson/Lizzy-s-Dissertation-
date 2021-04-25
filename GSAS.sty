@@ -14,7 +14,7 @@
 
 \renewcommand*{\foottextfont}{\normalfont\normalsize}
 
-% To enable spacing to be changed if necessary by the user
+% To enable spacing to be changed if neccesary by the user
 \newcommand*{\setGSASspacing}[1]{%
 \let\GSASSpacing#1
 \GSASSpacing}
@@ -22,7 +22,7 @@
 
 % Page layout
 % left, right margins and textwidth
-\setlrmarginsandblock{1in}{1in}{*}
+\setlrmarginsandblock{1.5in}{1in}{*}
 
 %% for main body, bottom of text at 1in, footer below
 %% top of header at 1in, first text line double spaced
@@ -81,26 +81,26 @@
 \makepagestyle{lot}
 \makeevenfoot{lot}{}{\thepage}{}
 \makeoddfoot{lot}{}{\thepage}{}
-%\makeevenhead{lot}{Table}{}{Page}
-%\makeoddhead{lot}{Table}{}{Page}
+\makeevenhead{lot}{Table}{}{Page}
+\makeoddhead{lot}{Table}{}{Page}
 
 %%%% The LoF
-\renewcommand{\listfigurename}{List of Figures}
+\renewcommand{\listfigurename}{LIST OF FIGURES}
 \addtodef{\listoffigures}{\clearpage\pagestyle{lof}}{}
 
 %%% The LoT
-\renewcommand{\listtablename}{List of Tables}
+\renewcommand{\listtablename}{LIST OF TABLES}
 \addtodef{\listoftables}{\clearpage\pagestyle{lot}}{}
 \renewcommand*{\lotheadstart}{\vspace*{-\topfiddle}}
 \renewcommand*{\afterlottitle}{\thispagestyle{plain}%
-%\par\nobreak {\normalfont Table \hfill Page}\par\nobreak}
+\par\nobreak {\normalfont Table \hfill Page}\par\nobreak}
 
 %%%% Do the ToC
-\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
 \addtodef{\tableofcontents}{\clearpage\pagestyle{toc}}{}
 \renewcommand*{\tocheadstart}{\vspace*{-\topfiddle}}
 \renewcommand*{\aftertoctitle}{\thispagestyle{plain}%
-%\par\nobreak \mbox{}\hfill{\normalfont Page}\par\nobreak}
+\par\nobreak \mbox{}\hfill{\normalfont Page}\par\nobreak}
 
 \renewcommand*{\cftchapterfont}{\normalfont}
 \renewcommand*{\cftchapterpagefont}{\normalfont}
