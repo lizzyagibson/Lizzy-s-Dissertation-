@@ -1,0 +1,85 @@
+\documentclass[letterpaper,12pt, oneside]{memoir}
+\usepackage{GSAS}
+\usepackage{graphicx}
+\usepackage[letterpaper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\chapterstyle{ger}
+\usepackage[sectionbib, round, authoryear]{natbib}
+%\usepackage{chapterbib} 
+% \documentclass[11pt]{article}    
+% \usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}        \usepackage{diagbox}
+% \geometry{letterpaper}
+% \usepackage{multirow}
+% \usepackage{hyperref}
+% \usepackage[all]{hypcap}
+% \usepackage{graphicx}
+% \usepackage{setspace}
+% \usepackage[parfill]{parskip}   
+% \usepackage{amsmath}
+% \usepackage{longtable}
+% \usepackage[usenames,dvipsnames]{color}
+% \usepackage{lscape}
+% \usepackage[toc,page]{appendix}
+% \usepackage{times}
+% \usepackage{subfigure}
+% \usepackage{amssymb}
+% \usepackage{lineno}
+% \usepackage{times}
+% \usepackage[super, comma, sort&compress]{natbib}
+% \usepackage{fancyhdr}
+% \usepackage{lastpage}
+% \usepackage{authblk}
+% \usepackage{setspace}
+% \doublespacing
+
+\newcommand{\PM}{PM$_{2.5}$}
+\newcommand{\mugm}{$\mu$g/m$^3$}
+
+\newcommand{\mak}[1]{{\color{blue} \textbf{mak:} #1}}
+\newcommand{\liz}[1]{{\color{ForestGreen} \textbf{lizzy:} #1}}
+
+%\pagenumbering{gobble}
+
+\begin{document}
+
+\maxtocdepth{subsection} % put 3 levels into the
+
+%% Here's the Title Page
+\thetitlepage
+
+%% Here's the copyright page.
+\include{./FrontMatter/copyright}
+
+%% Here's the Abstract
+\include{./FrontMatter/abstract}
+
+\frontmatter %This command lets LaTeX know that you want lowercase Roman page numbers in these next sections.
+
+\clearpage\tableofcontents* %LaTeX automatically renders your table of contents using your \chapter and \section commands throughout the whole document. If you don't want something to appear in the table of contents, simply use an asterisk in the command, like \chapter*{} or \section*{}
+
+% A list of graphs and illustrations should go here if you use any.
+\clearpage\listoffigures
+\clearpage\listoftables
+
+% Abbreviations
+% \include{./FrontMatter/Abbrev}
+
+% Acknowledgements
+% \include{./FrontMatter/Acknowledgments}
+
+% Dedication
+% \include{./FrontMatter/Dedication}
+
+\mainmatter
+
+\input{intro.tex}
+
+
+\backmatter
+
+\begin{SingleSpace}
+    \linespread{1}
+    \bibliographystyle{apalike}
+    \bibliography{mix.bib}
+\end{SingleSpace}
+
+\end{document}
