@@ -1,6 +1,6 @@
 \documentclass[letterpaper, 12pt, oneside]{memoir}
 
-\input{packages} % load packages
+\usepackage{GSAS} % uses GSAS style file we wrote
 
 \begin{document}
 
@@ -9,11 +9,11 @@
 % Here's the Title Page
 \thetitlepage
 
-% Here's the copyright page.
-\include{./FrontMatter/copyright}
+% Here's the copyright page
+\input{./frontmatter/copyright}
 
 % Here's the Abstract
-\include{./FrontMatter/abstract}
+\input{./frontmatter/abstract}
 
 \frontmatter % lowercase Roman page numbers
 
@@ -22,21 +22,22 @@
 \clearpage\listoftables
 
 % Abbreviations
-\clearpage\include{./FrontMatter/abbrev}
+\clearpage
+\input{./frontmatter/abbrev}
 
 % Acknowledgements
-\include{./FrontMatter/ack}
+\input{./frontmatter/ack}
 
 % Dedication
-\include{./FrontMatter/dedication}
+\input{./frontmatter/dedication}
 
 \mainmatter
 
-\input{intro.tex}
-%\input{ch2.tex}
-%\input{ch3.tex}
-%\input{ch4.tex}
-%\input{discussion.tex}
+\input{./chapters/intro.tex}
+\input{./chapters/ch2.tex}
+\input{./chapters/ch3.tex}
+\input{./chapters/ch4.tex}
+\input{./chapters/discuss.tex}
 
 \backmatter
 

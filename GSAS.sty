@@ -8,8 +8,44 @@
 {\@ehd}}
 \endpwGSAS
 
+% packages
 \usepackage{url}
 \urlstyle{same}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[letterpaper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\chapterstyle{ger}
+\usepackage[sectionbib, round, authoryear, comma, sort&compress]{natbib}
+\usepackage{diagbox}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{authblk}
+\usepackage{setspace}
+
+\usepackage[pagebackref,hidelinks, plainpages=false, pdfpagelabels, backref=page]{hyperref}
+\usepackage{memhfixc}
+
+\renewcommand*{\backref}[1]{} % Set up back reference
+\renewcommand*{\backrefalt}[4]{%
+% alternative interface
+% #2: backref list with distinct entries
+% #3: number of back references including duplicates
+[#3 citation(s) on #1 page(s): #2]\par}
+
+% Commands
+\newcommand{\PM}{PM$_{2.5}$}
+\newcommand{\mugm}{$\mu$g/m$^3$}
+\newcommand{\bnmf}{BN$^{2}$MF }
+\newcommand{\bnmfc}{BN$^{2}$MF}
+
+\newcommand{\mak}[1]{{\color{blue} \textbf{mak:} #1}}
+\newcommand{\liz}[1]{{\color{ForestGreen} \textbf{lizzy:} #1}}
+
 \setverbatimfont{\normalfont}% make verbatims use the body font
 
 \renewcommand*{\foottextfont}{\normalfont\normalsize}
@@ -70,13 +106,9 @@
 \makepagestyle{toc}
 \makeevenfoot{toc}{}{\thepage}{}
 \makeoddfoot{toc}{}{\thepage}{}
-\makeevenhead{toc}{Chapter}{}{Page}
-\makeoddhead{toc}{Chapter}{}{Page}
 \makepagestyle{lof}
 \makeevenfoot{lof}{}{\thepage}{}
 \makeoddfoot{lof}{}{\thepage}{}
-\makeevenhead{lof}{Figure}{}{Page}
-\makeoddhead{lof}{Figure}{}{Page}
 \makepagestyle{lot}
 \makeevenfoot{lot}{}{\thepage}{}
 \makeoddfoot{lot}{}{\thepage}{}
@@ -93,7 +125,7 @@
     \par\nobreak \par\nobreak}
 
 % Do the ToC
-\renewcommand{\contentsname}{Table of Content}
+\renewcommand{\contentsname}{Table of Contents}
 \addtodef{\tableofcontents}{\clearpage\pagestyle{toc}}{}
 \renewcommand*{\tocheadstart}{\vspace*{-\topfiddle}}
 \renewcommand*{\aftertoctitle}{\thispagestyle{plain}\par\nobreak \mbox{}\hfill{}\par\nobreak}
@@ -164,19 +196,6 @@
 \chapter*{\bibname}\phantomsection\addcontentsline{toc}{chapter}{\bibname}
 \SingleSpacing}
 
-% endnotes
-% \renewcommand*{\notesname}{NOTES}
-% \renewcommand*{\notedivision}{%
-% \GSASSpacing
-% \chapter*{\notesname}
-% \addcontentsline{toc}{chapter}{\notesname}
-% \SingleSpacing}
-
-% \continuousnotenums
-% \renewcommand*{\notenuminnotes}[1]{\textsuperscript{#1}\space}
-% \renewcommand{\noteinnotes}[1]{#1\\}
-% \renewcommand*{\pagenotesubhead}[3]{}% no subheads
-
 % general macro for Abstract, etc., headings
 \newcommand*{\pretoctitle}[1]{{\clearpage\centering
 \vspace*{-\topfiddle}#1\par}}
@@ -185,9 +204,14 @@
 \newcommand{\GSASacknowledgements}{\pretoctitle{Acknowledgements}}
 
 % Start the ABSTRACT
-\newcommand{\GSASabstract}{%
-\addtotextheight{-\botfiddle}%
-\pretoctitle{Abstract}}
+% \newcommand{\GSASabstract}{%
+% \addtotextheight{-\botfiddle}%
+% \pretoctitle{Abstract}}
+
+\newenvironment{GSASabstract}{%
+% \pretoctitle{Abstract}
+\thispagestyle{empty}}%
+{}
 
 % make it easy to center any dedication
 \newcommand{\GSASdedication}[1]{%
@@ -195,7 +219,7 @@
 
 % for any headings after the tocloft and before the main body
 \newcommand{\prelimtitle}[1]{%
-\pretoctitle{#1}\phantomsection\addcontentsline{toc}{chapter}{#1}}
+\pretoctitle{#1}\addcontentsline{toc}{chapter}{#1}}
 
 % for the title page and approval page.
 % your title
@@ -203,7 +227,7 @@
 % you
 \newcommand{\setauthor}[1]{\def\GSASauthor{#1}}
 % title page
-\settitle{Statistical and Machine Learning Methods for Pattern Identification in Environmental Mixtures}
+\settitle{Statistical and Machine \vspace{0.75ex} Learning Methods for Pattern \vspace{0.75ex} Identification in Environmental Mixtures}
 \setauthor{Elizabeth Atkeson Gibson}
 
 % typesets the TITLE page
@@ -212,7 +236,7 @@
 \thispagestyle{empty}
 \centering
 \vspace*{\fill}
-{\huge\textbf{\GSAStitle}} \\ \ \\ by \\ \GSASauthor
+{\huge{\openup 10cm \textsc{\GSAStitle}}} \\ \ \\ by \\ \GSASauthor
 \vfill
 {\SingleSpace
 Submitted in partial fulfillment of the\\
