@@ -2,7 +2,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{GSAS}[2021]
 
-%% Only works with the memoir class!
+% Only works with the memoir class!
 \@ifclassloaded{memoir}{\let\endpwGSAS\relax}{\let\endpwGSAS\endinput
 \PackageError{GSAS}{The GSAS package only works with the memoir class}%
 {\@ehd}}
@@ -10,7 +10,7 @@
 
 \usepackage{url}
 \urlstyle{same}
-\setverbatimfont{\normalfont\rmfamily}% make verbatims use the body font
+\setverbatimfont{\normalfont}% make verbatims use the body font
 
 \renewcommand*{\foottextfont}{\normalfont\normalsize}
 
@@ -21,12 +21,12 @@
 \setGSASspacing{\DoubleSpacing}
 
 % Page layout
-% left, right margins and textwidth
+% left, right margins and text width
 \setlrmarginsandblock{1in}{1in}{*}
 
-%% for main body, bottom of text at 1in, footer below
-%% top of header at 1in, first text line double spaced
-%% below base of header
+% for main body, bottom of text at 1in, footer below
+% top of header at 1in, first text line double spaced
+% below base of header
 \newlength{\linespace}
 \setlength{\linespace}{\baselineskip} % current equivalent of \onelineskip
 \setlength{\headheight}{\onelineskip}
@@ -36,17 +36,17 @@
 \addtolength{\uppermargin}{\headheight}
 \addtolength{\uppermargin}{\headsep}
 
-%% and for the bottom
+% and for the bottom
 \setlength{\lowermargin}{1in}
 \setlength{\textheight}{\paperheight}
 \addtolength{\textheight}{-\uppermargin}
 \addtolength{\textheight}{-\lowermargin}
 
-%% footnote settings
+% footnote settings
 \setlength{\footskip}{\onelineskip}
 \setlength{\footnotesep}{\onelineskip}
 
-%% the fiddle lengths (..ta.. for title/approval page, others for prelims)
+% the fiddle lengths (..ta.. for title/approval page, others for prelims)
 \newlength{\toptafiddle} \setlength{\toptafiddle}{2\linespace}
 \newlength{\bottafiddle} \setlength{\bottafiddle}{0pt}
 \newlength{\topfiddle} \setlength{\topfiddle}{\toptafiddle}
@@ -61,12 +61,12 @@
 \onecolumn}
 
 % Page styles
-%% the main text
+% the main text
 \makepagestyle{GSAS}
 \makeevenhead{GSAS}{\thepage}{}{}
 \makeoddhead{GSAS}{}{}{\thepage}
 
-%% for continuation pages of the ToC, LoF, LoT
+% for continuation pages of the ToC, LoF, LoT
 \makepagestyle{toc}
 \makeevenfoot{toc}{}{\thepage}{}
 \makeoddfoot{toc}{}{\thepage}{}
@@ -81,18 +81,18 @@
 \makeevenfoot{lot}{}{\thepage}{}
 \makeoddfoot{lot}{}{\thepage}{}
 
-%%%% The LoF
+% The LoF
 \renewcommand{\listfigurename}{List of Figures}
 \addtodef{\listoffigures}{\clearpage\pagestyle{lof}}{}
 
-%%% The LoT
+% The LoT
 \renewcommand{\listtablename}{List of Tables}
 \addtodef{\listoftables}{\clearpage\pagestyle{lot}}{}
 \renewcommand*{\lotheadstart}{\vspace*{-\topfiddle}}
 \renewcommand*{\afterlottitle}{\thispagestyle{plain}
     \par\nobreak \par\nobreak}
 
-%%%% Do the ToC
+% Do the ToC
 \renewcommand{\contentsname}{Table of Content}
 \addtodef{\tableofcontents}{\clearpage\pagestyle{toc}}{}
 \renewcommand*{\tocheadstart}{\vspace*{-\topfiddle}}
@@ -104,11 +104,11 @@
 \cftchapterfont\cftdotfill{\cftchapterdotsep}}
 \renewcommand*{\cftchapterdotsep}{\cftdotsep}
 
-%%% no extra space before the entry, or in the LoF/LoT
+% no extra space before the entry, or in the LoF/LoT
 \setlength{\cftbeforechapterskip}{0pt plus 0pt}
 \renewcommand*{\insertchapterspace}{}
 
-%% chapter style
+% chapter style
 % \makechapterstyle{GSAS}{%
 % \setlength{\beforechapskip}{-\topfiddle}
 % \setlength{\midchapskip}{1.0\onelineskip}
@@ -120,7 +120,7 @@
 % \renewcommand*{\printchapternonum}{}}
 % \aliaspagestyle{chapter}{empty}
 
-%% chapter style for appendices, text comes on following page
+% chapter style for appendices, text comes on following page
 \makechapterstyle{GSASappendix}{%
 \setlength{\beforechapskip}{-\topfiddle}
 \setlength{\midchapskip}{1.0\onelineskip}
@@ -134,23 +134,23 @@
 \renewcommand*{\printchapternonum}{}
 \renewcommand*{\afterchaptertitle}{\clearpage}}
 
-%%% different chapter style for appendices, (and double spaced)
+% different chapter style for appendices, (and double spaced)
 \addtodef{\appendix}{}{\chapterstyle{GSASappendix}\GSASSpacing}
 
-%%% (subsub)section styles
+% (subsub)section styles
 \setbeforesecskip{-1\onelineskip plus -1ex minus -.2ex}
 \setaftersecskip{1\onelineskip plus .2ex}
 \setbeforesubsecskip{-1\onelineskip plus -1ex minus -.2ex}
 \setaftersubsecskip{1\onelineskip plus .2ex}
 
-%% Captions
+% Captions
 \captiontitlefont{\normalfont}% title font
 \precaption{\raggedright}% for Caption N
 \captiondelim{\newline}% newline
 \captionstyle{\raggedright}% for title
 \setlength{\belowcaptionskip}{\onelineskip}
 
-%% for REFERENCE section
+% for REFERENCE section
 \renewcommand*{\bibname}{\centering Bibliography}
 \setlength{\bibitemsep}{\onelineskip}
 \renewcommand*{\biblistextra}{%
@@ -161,10 +161,10 @@
 
 \renewcommand*{\bibsection}{%
 \GSASSpacing
-\chapter*{\bibname}\addcontentsline{toc}{chapter}{\bibname}
+\chapter*{\bibname}\phantomsection\addcontentsline{toc}{chapter}{\bibname}
 \SingleSpacing}
 
-%% endnotes
+% endnotes
 % \renewcommand*{\notesname}{NOTES}
 % \renewcommand*{\notedivision}{%
 % \GSASSpacing
@@ -177,43 +177,42 @@
 % \renewcommand{\noteinnotes}[1]{#1\\}
 % \renewcommand*{\pagenotesubhead}[3]{}% no subheads
 
-%%% general macro for Abstract, etc., headings
+% general macro for Abstract, etc., headings
 \newcommand*{\pretoctitle}[1]{{\clearpage\centering
 \vspace*{-\topfiddle}#1\par}}
 
-%%% Start the ACKNOWLEDGEMENTS
+% Start the ACKNOWLEDGEMENTS
 \newcommand{\GSASacknowledgements}{\pretoctitle{Acknowledgements}}
 
-%%% Start the ABSTRACT
+% Start the ABSTRACT
 \newcommand{\GSASabstract}{%
 \addtotextheight{-\botfiddle}%
 \pretoctitle{Abstract}}
 
-%% make it easy to center any dedication
+% make it easy to center any dedication
 \newcommand{\GSASdedication}[1]{%
 {\clearpage\mbox{}\vfill\centering #1 \par\vfill\clearpage}}
 
-%% for any headings after the tocloft and before the main body
+% for any headings after the tocloft and before the main body
 \newcommand{\prelimtitle}[1]{%
-\pretoctitle{#1}\addcontentsline{toc}{chapter}{#1}}
+\pretoctitle{#1}\phantomsection\addcontentsline{toc}{chapter}{#1}}
 
-%%%% for the title page and approval page.
+% for the title page and approval page.
 % your title
 \newcommand{\settitle}[1]{\def\GSAStitle{#1}}
 % you
 \newcommand{\setauthor}[1]{\def\GSASauthor{#1}}
-%% title page
-\settitle{AN INCREDIBLE PIECE OF WORK OVER WHICH I HAVE STRUGGLED
-DAY AND NIGHT FOR FAR TOO LONG AND NOW IT IS OVER}
+% title page
+\settitle{Statistical and Machine Learning Methods for Pattern Identification in Environmental Mixtures}
 \setauthor{Elizabeth Atkeson Gibson}
 
-%%% typesets the TITLE page
+% typesets the TITLE page
 \newcommand{\thetitlepage}{{%
 \clearpage
 \thispagestyle{empty}
 \centering
 \vspace*{\fill}
-{\Large\textbf{\GSAStitle}} \\ \ \\ by \\ \GSASauthor
+{\huge\textbf{\GSAStitle}} \\ \ \\ by \\ \GSASauthor
 \vfill
 {\SingleSpace
 Submitted in partial fulfillment of the\\
@@ -227,8 +226,8 @@ Columbia University  \\
 2021
 \clearpage}}
 
-%%%%%%%%%%%%%%% end of *.sty file
+%% end of *.sty file
 \endinput
-%%%%%%%%%%%%%%%
+%%
 
 
