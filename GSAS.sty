@@ -14,7 +14,6 @@
 \usepackage{graphicx}
 \usepackage{microtype}
 \usepackage[letterpaper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
-\chapterstyle{ger}
 \usepackage[sectionbib, round, authoryear, comma, sort&compress]{natbib}
 \usepackage{diagbox}
 \usepackage{multirow}
@@ -27,9 +26,11 @@
 \usepackage{authblk}
 \usepackage{setspace}
 
+% this changes the chapter title page
+\chapterstyle{ger}
+
 \usepackage[pagebackref,hidelinks, plainpages=false, pdfpagelabels, backref=page]{hyperref}
 \usepackage{memhfixc}
-
 \renewcommand*{\backref}[1]{} % Set up back reference
 \renewcommand*{\backrefalt}[4]{%
 % alternative interface
@@ -201,21 +202,21 @@
 \vspace*{-\topfiddle}#1\par}}
 
 % Start the ACKNOWLEDGEMENTS
-\newcommand{\GSASacknowledgements}{\pretoctitle{Acknowledgements}}
+% \newcommand{\GSASacknowledgements}{\pretoctitle{Acknowledgements}}
 
 % Start the ABSTRACT
 % \newcommand{\GSASabstract}{%
 % \addtotextheight{-\botfiddle}%
 % \pretoctitle{Abstract}}
 
-\newenvironment{GSASabstract}{%
-% \pretoctitle{Abstract}
-\thispagestyle{empty}}%
-{}
+% \newenvironment{GSASabstract}{%
+% % \pretoctitle{Abstract}
+% \thispagestyle{empty}}%
+% {}
 
 % make it easy to center any dedication
-\newcommand{\GSASdedication}[1]{%
-{\clearpage\mbox{}\vfill\centering #1 \par\vfill\clearpage}}
+% \newcommand{\GSASdedication}[1]{%
+% {\clearpage\mbox{}\vfill\centering #1 \par\vfill\clearpage}}
 
 % for any headings after the tocloft and before the main body
 \newcommand{\prelimtitle}[1]{%
@@ -236,7 +237,7 @@
 \thispagestyle{empty}
 \centering
 \vspace*{\fill}
-{\huge{\openup 10cm \textsc{\GSAStitle}}} \\ \ \\ by \\ \GSASauthor
+{\huge{\textsc{\GSAStitle}}} \\ \ \\ by \\ \GSASauthor
 \vfill
 {\SingleSpace
 Submitted in partial fulfillment of the\\
