@@ -4,26 +4,31 @@
 
 \begin{document}
 
-\maxtocdepth{subsubsection} % put 4 levels into the
+\maxtocdepth{subsection} % put 4 levels into the toc
+
+% Fill in title page
+\settitle{Statistical and Machine \vspace{0.75ex} Learning Methods for Pattern \vspace{0.75ex} Identification in Environmental Mixtures} % your title
+\setauthor{Elizabeth Atkeson Gibson} % your full name
+\setinitial{Elizabeth A. Gibson} % your name with middle initial
+\setyear{2021} % graduation/copyright year
 
 % Here's the Title Page
 \thetitlepage
 
 % Here's the copyright page
-\input{./frontmatter/copyright}
+\thecopyright
 
 % Here's the Abstract
 \input{./frontmatter/abstract}
 
-\frontmatter % lowercase Roman page numbers
+\frontmatter % lowercase Roman page numbers for the next sections
 
 \clearpage\tableofcontents
 \clearpage\listoffigures
 \clearpage\listoftables
 
 % Abbreviations
-\clearpage
-\input{./frontmatter/abbrev}
+\clearpage\input{./frontmatter/abbrev}
 
 % Acknowledgements
 \input{./frontmatter/ack}
@@ -31,7 +36,7 @@
 % Dedication
 \input{./frontmatter/dedication}
 
-\mainmatter
+\mainmatter % begin Arabic numbers pages from here on
 
 \input{./chapters/intro.tex}
 \input{./chapters/ch2.tex}
@@ -41,6 +46,7 @@
 
 \backmatter
 
+% one bibliography for all chapters
 \begin{SingleSpace}
     \linespread{1}
     \bibliographystyle{apalike}

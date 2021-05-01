@@ -25,11 +25,15 @@
 \usepackage{lastpage}
 \usepackage{authblk}
 \usepackage{setspace}
+\usepackage{subcaption}
+\usepackage{lscape}
+\usepackage{pdflscape}
 
-% this changes the chapter title page
+% this changes the chapter title page style
 \chapterstyle{ger}
 
-\usepackage[pagebackref,hidelinks, plainpages=false, pdfpagelabels, backref=page]{hyperref}
+% hyper links for citations and sections, figs, tables ...
+\usepackage[pagebackref, hidelinks, plainpages = false, pdfpagelabels, backref = page]{hyperref}
 \usepackage{memhfixc}
 \renewcommand*{\backref}[1]{} % Set up back reference
 \renewcommand*{\backrefalt}[4]{%
@@ -48,7 +52,6 @@
 \newcommand{\liz}[1]{{\color{ForestGreen} \textbf{lizzy:} #1}}
 
 \setverbatimfont{\normalfont}% make verbatims use the body font
-
 \renewcommand*{\foottextfont}{\normalfont\normalsize}
 
 % To enable spacing to be changed if necessary by the user
@@ -141,18 +144,6 @@
 \setlength{\cftbeforechapterskip}{0pt plus 0pt}
 \renewcommand*{\insertchapterspace}{}
 
-% chapter style
-% \makechapterstyle{GSAS}{%
-% \setlength{\beforechapskip}{-\topfiddle}
-% \setlength{\midchapskip}{1.0\onelineskip}
-% \setlength{\afterchapskip}{1.0\onelineskip}
-%\renewcommand*{\chapnamefont}{\normalfont}
-% \renewcommand*{\chapnumfont}{\chapnamefont}
-%\renewcommand*{\printchapternum}{\centering\chapnumfont \thechapter}
-%\renewcommand*{\chaptitlefont}{\normalfont\centering}
-% \renewcommand*{\printchapternonum}{}}
-% \aliaspagestyle{chapter}{empty}
-
 % chapter style for appendices, text comes on following page
 \makechapterstyle{GSASappendix}{%
 \setlength{\beforechapskip}{-\topfiddle}
@@ -197,26 +188,9 @@
 \chapter*{\bibname}\phantomsection\addcontentsline{toc}{chapter}{\bibname}
 \SingleSpacing}
 
-% general macro for Abstract, etc., headings
+% general macro for Abstract, TOC, etc., headings
 \newcommand*{\pretoctitle}[1]{{\clearpage\centering
 \vspace*{-\topfiddle}#1\par}}
-
-% Start the ACKNOWLEDGEMENTS
-% \newcommand{\GSASacknowledgements}{\pretoctitle{Acknowledgements}}
-
-% Start the ABSTRACT
-% \newcommand{\GSASabstract}{%
-% \addtotextheight{-\botfiddle}%
-% \pretoctitle{Abstract}}
-
-% \newenvironment{GSASabstract}{%
-% % \pretoctitle{Abstract}
-% \thispagestyle{empty}}%
-% {}
-
-% make it easy to center any dedication
-% \newcommand{\GSASdedication}[1]{%
-% {\clearpage\mbox{}\vfill\centering #1 \par\vfill\clearpage}}
 
 % for any headings after the tocloft and before the main body
 \newcommand{\prelimtitle}[1]{%
@@ -227,9 +201,10 @@
 \newcommand{\settitle}[1]{\def\GSAStitle{#1}}
 % you
 \newcommand{\setauthor}[1]{\def\GSASauthor{#1}}
-% title page
-\settitle{Statistical and Machine \vspace{0.75ex} Learning Methods for Pattern \vspace{0.75ex} Identification in Environmental Mixtures}
-\setauthor{Elizabeth Atkeson Gibson}
+% you with middle initial
+\newcommand{\setinitial}[1]{\def\GSASinitial{#1}}
+% year
+\newcommand{\setyear}[1]{\def\GSASyear{#1}}
 
 % typesets the TITLE page
 \newcommand{\thetitlepage}{{%
@@ -248,7 +223,21 @@ Submitted in partial fulfillment of the\\
 }
 \vfill
 Columbia University  \\
-2021
+\GSASyear
+\clearpage}}
+
+% typesets the copyright page
+\newcommand{\thecopyright}{{%
+\clearpage
+\thispagestyle{empty} % No page number
+\setcounter{page}{0} %For optimizing page number display in pdf reader
+\null\vfill % Pushes Copyright to the bottom of the page.
+\begin{center}
+  \SingleSpace %Keep the Copyright single-spaced
+\copyright \hspace{1mm} \GSASyear \\
+\GSASinitial \\
+All Rights Reserved\\
+\end{center}
 \clearpage}}
 
 %% end of *.sty file
