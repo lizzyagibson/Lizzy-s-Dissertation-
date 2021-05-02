@@ -187,24 +187,29 @@ Class & Chemical & \% \textless LOD & 25\% & Median & 75\% \\
 \subsection{Pattern recognition}
 \bnmfc-identified patterns were described in detail in Gibson et al. (CITE) and are presented in Figure~\ref{fig:load}. Briefly, we found two prominent patterns within the EDC mixture, one phenol pattern and one phthalate pattern, with notable cross-class loadings: MEP loaded more strongly onto the pattern described by phenol exposure (we will refer to this pattern as phenols + MEP), and BPA loaded more strongly on the pattern comprised of phthalate metabolites (we will refer to this pattern as phthalates + MEP). While these chemicals appear in various consumer products, these patterns appear to reflect distinct exposure routes, phenols + MEP through personal care products and phthalates + BPA through food packaging. Patterns were not correlated ($r_S$ = -0.07). Summary statistics for the two patterns are presented in Table~\ref{tab:conc}.
 
-\begin{figure}[!ht] 
+\subsection{Traditional health models}
+Table~\ref{tab:reg} displays associations between prenatal exposure to \bnmfc-identified EDC patterns and child IQ in males and females from multivariable linear regression models. In these traditional regression models, we used the mean of each individual score distribution as a point estimate to assign pattern exposure. Adjusting for coviarates, full scale IQ was, on average, negatively associated with phthalate + BPA exposure in females ($\beta$ = -3.4; 95\% confidence interval (CI) = -6.5, -0.4) but not in males ($\beta$ = -0.4; 95\% CI = -2.4, 1.7). The interaction term between males and females was marginally significant (p-value $<$ 0.1). Phenols + MEP were not associated with full scale IQ in males ($\beta$ = -0.8; 95\% CI =  -2.7, 1.1), but there was suggestive evidence of a positive association in females ($\beta$ = 2.0; 95\% CI = -0.3, 4.2). The interaction term between males and females was, again, marginally significant (p-value $<$ 0.1).
+
+\clearpage
+\begin{landscape}
+\begin{figure}
 \centering
-\begin{subfigure}[b]{0.6\textwidth}
-\includegraphics[scale = 0.5]{./figures/ppp_corr.pdf}
+\begin{subfigure}[b]{0.7\textwidth}
+\includegraphics[scale = 0.69]{./figures/ppp_corr.pdf}
 \caption{Inter-chemical correlations}
 \label{fig:corr}
 \end{subfigure}
-\hfill
+\hspace{5em}
+%\hfill
 \begin{subfigure}[b]{0.3\textwidth}
-\includegraphics[scale = 0.5]{./figures/eh_loadings.pdf}
+\includegraphics[scale = 0.69]{./figures/eh_loadings.pdf}
 \caption{\bnmfc-identified loadings}
 \label{fig:load}
 \end{subfigure}
+\hfill
 \caption[Intra-chemical correlations and \bnmfc-identified chemical loadings]{(\textbf{a}) Spearman correlations between 17 specific gravity-adjusted endocrine disrupting chemicals measured in 343 pregnant women from the Mothers \& Newborns cohort. (\textbf{b}) \bnmfc-identified chemical loadings. \bnmf discovered two underlying patterns in the mixture of seventeen phenols and phthalate metabolites in pregnant women. One pattern was characterized by phthalates and BPA, the other by phenols and MEP.}
 \end{figure}
-
-\subsection{Traditional health models}
-Table~\ref{tab:reg} displays associations between prenatal exposure to \bnmfc-identified EDC patterns and child IQ in males and females from multivariable linear regression models. In these traditional regression models, we used the mean of each individual score distribution as a point estimate to assign pattern exposure. Adjusting for coviarates, full scale IQ was, on average, negatively associated with phthalate + BPA exposure in females ($\beta$ = -3.4; 95\% confidence interval (CI) = -6.5, -0.4) but not in males ($\beta$ = -0.4; 95\% CI = -2.4, 1.7). The interaction term between males and females was marginally significant (p-value $<$ 0.1). Phenols + MEP were not associated with full scale IQ in males ($\beta$ = -0.8; 95\% CI =  -2.7, 1.1), but there was suggestive evidence of a positive association in females ($\beta$ = 2.0; 95\% CI = -0.3, 4.2). The interaction term between males and females was, again, marginally significant (p-value $<$ 0.1).
+\end{landscape}
 
 \subsection{Bayesian health models}
 Adjusting for covariates, full scale IQ was, on average, negatively associated with phthalate + BPA exposure in females ($\beta$ = -3.4; 95\% credible interval (CrI) = -6.7, -0.4) but not in males ($\beta$ = -0.4; 95\% CrI = -2.5, 1.7). Phenols + MEP were not associated with full scale IQ in females ($\beta$ = 2.1; 95\% CrI = -0.3, 4.5) or males ($\beta$ = -0.8; 95\% CrI = -2.8, 1.1). \\

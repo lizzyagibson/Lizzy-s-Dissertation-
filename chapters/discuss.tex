@@ -41,33 +41,24 @@ tox studies -- take mixture, expose zebra fish to it, etc
 This work identified patterns underlying two environmental mixtures, one comprised of 21 PCBs, dioxins, and phenols measured in the 2001--2002 cycle of NHANES and one of 17 phenols and phthalate metabolites measured in pregnant women in New York City between 1998 and 2006.
 
 \subsection{Accessibility of methods}
+Completion of the preceding chapters required several classes in linear algebra, sparse and low dimensional modelling, and probabilistic machine learning. Implementation of PCP-LOD and \bnmf employed two complex optimization algorithms. However, we developed both methods with the end user in mind. We took steps to remove the researcher from specification or selection of pattern number. We incorporated universal values for hyper-parameters in PCP-LOD so that users would not need to tune them. We chose vague priors for individual scores and chemical loadings in \bnmf so that they would suit various configurations of environmental data. We chose to approximate \bnmfc's posterior distribution through variational inference in part because it lifted the burden of assessing model convergence from the researcher. We mean for both methods to be broadly accessible to environmental health scientists and epidemiologists, who may lack formal statistical or mathematical training. Thus, as future work, we plan to develop and share user-friendly statistical software packages so that other researchers assessing exposures to mixtures can easily apply PCP-LOD or \bnmf to their research.
 
-Completion of the preceding chapters required several classes in linear algebra, sparse and low dimensional modelling, and probabilistic machine learning. Implementation of PCP-LOD and \bnmf employed two complex optimization algorithms. However, we developed both methods with the end user in mind. We took steps to remove the researcher from specification or selection of pattern number. We incorporated universal values for hyper-parameters in PCP-LOD so that users would not need to tune them. We chose vague priors for individual scores and chemical loadings in \bnmf so that they would suit various configurations of environmental data. We chose to approximate \bnmfc's posterior distribution through variational inference in part because it lifted the burden of assessing model convergence from the researcher. We mean for both methods to be broadly accessible to environmental health scientists and epidemiologists, who may lack formal statistical or mathmatical training. Thus, as future work, we plan to develop and share user-friendly statistical software packages so that other researchers assessing exposures to mixtures can easily apply PCP-LOD or \bnmf to their research.
+We propose to develop separate R packages for PCP-LOD (and other PCP implementations) and \bnmf to facilitate their use in environmental epidemiologic applications. These will provide environmental epidemiologists with accessible and flexible tools to address study-specific needs. We will include in the packaging all developed synthetic datasets as examples, along with documentation for guidance on proper use, inputs, interpretation, and limitations of both methods. We believe that the existence of user-friendly packages, such as \texttt{bkmr}, \texttt{gWQS}, and \texttt{qgcomp}, encourages researchers to incorporate complex methodologies by making them more approachable \citep{bobb2018statistical, renzetti2016gwqs, keil2020quantile}.
 
-We propose to develop separate R packages for PCP-LOD (and other PCP implementations) and \bnmf and to couple these with different options for health models, depending on the study design. The newly developed R package, therefore, will provide environmental epidemiologists with a user-friendly and flexible tool for all their study-specific needs. We will also include in this package all developed synthetic datasets as examples.
+Packaging code into reusable analysis software enables the dissemination of tools to facilitate future work more efficaciously. This is a good step in establishing reproducibility. Subject to the ethical constraints of personally identifiable information (PII), researchers should endeavor to make computations reproducible for others and future versions of themselves. In this work, all analytic code is publicly available on GitHub in three repositories: Chapter~\ref{sec:ch2} in \texttt{\href{https://github.com/lizzyagibson/Principal.Component.Pursuit}{Principal.Component.Pursuit}}, Chapter~\ref{sec:ch3} in \texttt{\href{https://github.com/lizzyagibson/BN2MF}{BN2MF}}, and Chapter~\ref{sec:ch4} in \texttt{\href{https://github.com/lizzyagibson/edc-patterns-wisc}{edc-patterns-wisc}}. We included the cleaned NHANES dataset with the code from Chapter~\ref{sec:ch2} because it is publicly available data. We did not include the data accompanying analyses in Chapters~\ref{sec:ch3} and \ref{sec:ch4}. These data were collected with written informed consent of mothers (and assent of children at age seven) \citep{perera03}; this did not include consent to publication of their personal data.
 
-more approachable method for many researchers. Pragmatically
-more widely usable. 
-accessibility of methods / user-friendly packaging
-user-friendly for environmental epidemiologic applications. 
-
-Develop and share a user-friendly R package, to allow other researchers assessing multi-pollutant exposures in environmental epidemiologic studies to apply PCP
-
-Establish reproducibility. We will develop and share a user-friendly R package to allow other researchers assessing multi-pollutant exposures in environmental epidemiologic studies to apply LDA.
-
-We propose to develop an R package that will include LDA for continuous data (Section B.5.a), as well as the above described extension to a supervised health model (Section B.5.b). We will also include in this package a developed synthetic dataset as an example, along with documentation for guidance on proper use, inputs, interpretation, and limitations of LDA. The newly developed R package, therefore, will provide environmental epidemiologists with a flexible tool for all their study-specific needs. Our sponsor team (Goldsmith, Paisley) has extensive experience in developing software for user-friendly implementations of advanced statistical methods
-
-Good examples: BKMR, WQS, Q g-comp, David Dunson ...
+T
+version control
 
 if a different person can’t run the same code/model in the future with the same setup and get the same result, is the work of the original analysis good science?
 
 If you don’t package and record what versions it will give consistent inputs on that will lead to same results as in the paper, can replication / validation of the code actually happen by a third party with access to both code and data but a different computer happen? If it’s not possible, maybe it’s not a scientifically valid analysis because you create the question of then having to validate that the analyses are equivalent , over different choices of randomization!
 
 You can foot note that replication is made more complex by the legal and ethical matter of PII data 
-But that subject to those constraints you should endeavor to make computations reproducible for others and future you
 
 Actually that’s an important thing: upgrading or moving between computing environments shouldn’t invalidate / obstruct replication/ reproduction of an analysis
-Packaging facilitated both! And dissemination of tools to facilitate further work more efficaciously
+Packaging facilitated both!
+
 
 \section{Public Health relevance}\label{sec:ph}
 \subsection{Research questions}\label{sec:question}
