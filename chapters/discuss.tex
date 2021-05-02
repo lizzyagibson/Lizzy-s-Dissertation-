@@ -1,9 +1,9 @@
 \chapter{Conclusion}\label{sec:conclusion}
 \clearpage
 
-This dissertation aimed to adapt pattern recognition methods employed in other fields (e.g., computer vision and machine learning) to environmental health data. We modified existing methods to remove the researcher from pattern number selection or specification, to retain the interpretability of a parts-based representation of data, and to explicitly account for uncertainty in identified patterns. We further incorporated this uncertainty in a hierarchical health model to understand the relationships between identified patterns of EDC exposure and child cognitive development. In this final chapter, we discuss our findings and their implications in three main sections: in Section~\ref{sec:summarize} we summarize our results and discuss their position within environmental mixtures research, in Section~\ref{sec:future} we discuss future research directions, and in Section~\ref{sec:ph} we conclude with the public health relevance and implications of our work.
+This dissertation aimed to adapt pattern recognition methods employed in other fields (e.g., computer vision and machine learning) to environmental health data. We modified existing methods to remove the researcher from pattern number selection or specification, to retain the interpretability of a parts-based representation of data, and to explicitly account for uncertainty in identified patterns. We further incorporated this uncertainty in a hierarchical health model to understand the relationships between identified patterns of EDC exposure and child cognitive development. In this final chapter, we discuss our findings and their implications in three main sections: in Section~\ref{sec:summarize} we summarize our findings and contributions and discuss their position within environmental mixtures research, in Section~\ref{sec:future} we discuss future research directions, and in Section~\ref{sec:ph} we conclude with the public health relevance and implications of our work.
 
-\section{Findings \& environmental mixtures research}\label{sec:summarize}
+\section{Our findings amid current landscape}\label{sec:summarize}
 
 \subsection{Dissertation findings}\label{sec:findings}
 additions from this work
@@ -18,26 +18,68 @@ similar / different \\
 
 \subsection{Bayesian methods}\label{sec:bayes}
 
+
+
+\clearpage
 \section{Future research directions}\label{sec:future}
+To date, environmental epidemiological investigations of multi-pollutant exposures have asked a variety of research questions and developed and adapted numerous statistical and machine learning methods to address them. However, a number of important questions remain unaddressed and new challenges have become apparent. Below, we outline several challenges and opportunities for future research on environmental mixtures and pattern identification therein.
+
+\subsection{Future studies}
 
 \begin{itemize}
-    \item tox studies
-    \item coupling pattern recognition with other methods
-    \item uncertainty propagation
-    \item other mixtures
+    \item coupling pattern recognition with other methods / uncertainty propagation
+    \item biological mechanism not really with this method
+    \item generalizability of patterns and of MN cohort
+    \item some exposures are already banned--need to address current sources
 \end{itemize}
+
+\subsection{Cross-disciplinary collaboration with toxicological research}
+
+tox studies -- take mixture, expose zebra fish to it, etc
+
+\subsection{Environmental mixtures of interest}
+This work identified patterns underlying two environmental mixtures, one comprised of 21 PCBs, dioxins, and phenols measured in the 2001--2002 cycle of NHANES and one of 17 phenols and phthalate metabolites measured in pregnant women in New York City between 1998 and 2006.
+
+\subsection{Accessibility of methods}
+
+Completion of the preceding chapters required several classes in linear algebra, sparse and low dimensional modelling, and probabilistic machine learning. Implementation of PCP-LOD and \bnmf employed two complex optimization algorithms. However, we developed both methods with the end user in mind. We took steps to remove the researcher from specification or selection of pattern number. We incorporated universal values for hyper-parameters in PCP-LOD so that users would not need to tune them. We chose vague priors for individual scores and chemical loadings in \bnmf so that they would suit various configurations of environmental data. We chose to approximate \bnmfc's posterior distribution through variational inference in part because it lifted the burden of assessing model convergence from the researcher. We mean for both methods to be broadly accessible to environmental health scientists and epidemiologists, who may lack formal statistical or mathmatical training. Thus, as future work, we plan to develop and share user-friendly statistical software packages so that other researchers assessing exposures to mixtures can easily apply PCP-LOD or \bnmf to their research.
+
+We propose to develop separate R packages for PCP-LOD (and other PCP implementations) and \bnmf and to couple these with different options for health models, depending on the study design. The newly developed R package, therefore, will provide environmental epidemiologists with a user-friendly and flexible tool for all their study-specific needs. We will also include in this package all developed synthetic datasets as examples.
+
+more approachable method for many researchers. Pragmatically
+more widely usable. 
+accessibility of methods / user-friendly packaging
+user-friendly for environmental epidemiologic applications. 
+
+Develop and share a user-friendly R package, to allow other researchers assessing multi-pollutant exposures in environmental epidemiologic studies to apply PCP
+
+Establish reproducibility. We will develop and share a user-friendly R package to allow other researchers assessing multi-pollutant exposures in environmental epidemiologic studies to apply LDA.
+
+We propose to develop an R package that will include LDA for continuous data (Section B.5.a), as well as the above described extension to a supervised health model (Section B.5.b). We will also include in this package a developed synthetic dataset as an example, along with documentation for guidance on proper use, inputs, interpretation, and limitations of LDA. The newly developed R package, therefore, will provide environmental epidemiologists with a flexible tool for all their study-specific needs. Our sponsor team (Goldsmith, Paisley) has extensive experience in developing software for user-friendly implementations of advanced statistical methods
+
+Good examples: BKMR, WQS, Q g-comp, David Dunson ...
+
+if a different person can’t run the same code/model in the future with the same setup and get the same result, is the work of the original analysis good science?
+
+If you don’t package and record what versions it will give consistent inputs on that will lead to same results as in the paper, can replication / validation of the code actually happen by a third party with access to both code and data but a different computer happen? If it’s not possible, maybe it’s not a scientifically valid analysis because you create the question of then having to validate that the analyses are equivalent , over different choices of randomization!
+
+You can foot note that replication is made more complex by the legal and ethical matter of PII data 
+But that subject to those constraints you should endeavor to make computations reproducible for others and future you
+
+Actually that’s an important thing: upgrading or moving between computing environments shouldn’t invalidate / obstruct replication/ reproduction of an analysis
+Packaging facilitated both! And dissemination of tools to facilitate further work more efficaciously
 
 \section{Public Health relevance}\label{sec:ph}
-
 \subsection{Research questions}\label{sec:question}
-what questions should we be asking \\
-research question should be informed by ultimate goal \\
-what questions can we answer with this?
+A unifying theme in this work is the importance of the research question in driving the choice of statistical or machine learning method. For example, \bnmf cannot distinguish important individual mixture members or `bad actors,' and linear regression cannot identify underlying patterns of exposure. Further, the research question should be informed by the ultimate goal of the project---e.g., is it to provide evidence of a plausible biological pathway between chemical and disease or to support comprehensive regulation of chemicals that co-occur? In this dissertation, we introduced PCP-LOD and \bnmf as methods to better understand the underlying structure of environmental exposures.
+
+Both are pattern recognition methods designed to address environmental health research questions concerning patterns of environmental exposures and to identify potential sources or behaviors leading to these exposures. The majority of environmental exposures are modifiable, meaning that individual action or, more sustainably, regulatory action can prevent or (at least) reduce exposure. Accordingly, the fundamental aim of this work is to design methods capable of establishing actions or circumstances that contribute to simultaneous chemical exposures in support of targeted public health interventions and regulations. In Chapter~\ref{sec:ch4} we observed a negative association between a pattern of prenatal phthalate and BPA exposure and female child IQ at seven years of age. This finding supports public health and regulative action on EDCs used as plasticizers and additives in food packaging; it does not support action against a single phthalate or a single phenol. Thus, this research supports a shift from chemical-by-chemical regulation toward \textit{class-based regulation}, where groups of chemicals identified as sharing properties and risks are evaluated and regulated together \citep{cordner2016can}.
 
 \subsection{Public Health implications}\label{sec:fin}
+No individual is exposed to a single chemical at a time. While public health research has traditionally relied upon well-loved standards such as linear and logistic regression to determine population-level associations between chemical exposures and outcomes, some research questions concerning multi-pollutant exposures require novel methods. The current focus on chemical mixtures represents a critical juncture in environmental health research. With this perspective, in Chapters~\ref{sec:ch2} and \ref{sec:ch3} we identified chemical patterns that we interpreted as sources of exposure within environmental mixtures; recognition of these patterns may aid in the development of preventive strategies to minimize exposure in individuals.
 
-\begin{itemize}
-    \item policy implications / informed interventions
-    \item generalizability of patterns and of MN cohort
-    \item biological mechanism not really with this method
-\end{itemize}
+Researchers may use both PCP-LOD and \bnmf to provide foundational evidence for pattern-based regulatory action or informed interventions, where patterns may represent exposure sourcse (e.g., diet as a source of POPs in Chapter~\ref{sec:ch2} and phthalates and BPA in Chapter~\ref{sec:ch3} and  \ref{sec:ch4}), at-risk behaviors (e.g., personal care product use contributing to phenol and DEP exposure in Chapters~\ref{sec:ch3} and \ref{sec:ch4}), or similar chemical structure (e.g., high and low molecular weight PCBs in Chapter~\ref{sec:ch2}). Both methods can be paired with expert knowledge to identify modifiable risk factors which are more effectively targeted than individual chemicals; for example, a source of particulate matter (PM), such as traffic, is more easily regulated than a single PM component, such as copper.
+
+Depending on the health outcome, implementation of strategies to reduce or prevent exposure to contributing environmental factors could have a consequential impact. In Chapter~\ref{sec:ch4} we considered the relationship between \textit{in utero} EDC exposure and child cognition. This work supports targeted public health interventions with expectant mothers or women contemplating pregnancy concerning their dietary choices. More importantly, confirmed associations between exposure patterns and neurodevelopment provide leverage to demand stricter governmental regulations of food packaging and actions to curb exposure.
+
+Environmental health scientists and epidemiologists can use PCP-LOD and \bnmf to investigate shared sources of chemical exposure and behaviors and circumstances leading to exposure. We adapted these methods to suit environmental data (i.e., chemical concentrations) and to answer a subset of environmental mixtures questions. Research on underlying patterns of chemical exposure and unique or extreme exposure events can aid in the design and development of class-based regulations, informed policies, and targeted interventions to ensure equal access to a clean environment.
