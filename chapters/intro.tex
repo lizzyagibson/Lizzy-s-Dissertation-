@@ -32,27 +32,32 @@ The goal of this paper is not to give a comprehensive overview of all existing m
 
 Generally, exposure to a mixture indicates exposure to multiple ``stressors'' simultaneously, which can include both chemical and non-chemical (e.g., socioeconomic status, diet, etc.) components. The question becomes, how can we represent the complexity of reality in a statistical model? 
 
-The selected method(s) should be based on the primary research question. If the interest lies in identifying exposure patterns or groups of people with similar exposure profiles, some dimensionality reduction is required \citep{jolliffe02, jolliffe02b, thompson04, paatero94}. To identify the toxic agent(s) in a mixture, variable selection approaches may be more appropriate \citep{tibshirani96, zou05}. If the aim is to evaluate synergistic or antagonistic effects, the main options are to hard-code interactions into the health model or take advantage of more flexible semi- or non-parametric models \citep{bobb2014bayesian,coull2015,bobb2018statistical}. Finally, to observe the effect of the overall mixture, one may create a weighted index of exposure or compute the full posterior distribution using Bayesian methods \citep{carrico15,bobb2014bayesian,coull2015}.
+The selected method(s) should be based on the primary research question. If the interest lies in identifying exposure patterns or groups of people with similar exposure profiles, some dimensionality reduction is required \citep{jolliffe02, thompson04, paatero94}. To identify the toxic agent(s) in a mixture, variable selection approaches may be more appropriate \citep{tibshirani96, zou05}. If the aim is to evaluate synergistic or antagonistic effects, the main options are to hard-code interactions into the health model or take advantage of more flexible semi- or non-parametric models \citep{bobb2014bayesian,coull2015,bobb2018statistical}. Finally, to observe the effect of the overall mixture, one may create a weighted index of exposure or compute the full posterior distribution using Bayesian methods \citep{carrico15,bobb2014bayesian,coull2015}.
 
 We present the four main research questions most relevant for mixtures analyses in Table~\ref{tab:qx}. In the next sections, we describe appropriate methods to address each of these questions and provide applied examples. Please note that many of the methods discussed may answer multiple questions and thus fall under multiple subsections. To avoid repetition, we present applications under the research question to which they contribute most uniquely. \\
 
+\begingroup
+\renewcommand{\arraystretch}{1.4}
 \begin{table}[ht]
 \begin{center}
 \caption[The four main questions in mixtures analyses]{The four main possible questions in mixtures analyses.}
 \label{tab:qx}
-\begin{tabular}{|c p{15cm}|}
+\begin{tabular}{c p{15cm}}
+\hline
 \hline
   1. & Are there specific patterns of exposure in the study population? \\
-  % \hline
+  \hline
   2. & Which are the toxic agents in the mixture? Or, what are the independent effects of each mixture member on the health outcome of interest? \\
-  % \hline
+  \hline
   3. & Are there synergistic effects or interactions among mixture members? \\
-  % \hline
+  \hline
   4. & What is the overall effect of the mixture on the outcome of interest? \\
+\hline
 \hline
 \end{tabular}
 \end{center}
 \end{table}
+\endgroup
 \vspace{-2em}
 
 \subsection{Pattern or profile identification}\label{sec:Patterns}

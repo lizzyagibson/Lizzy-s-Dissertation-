@@ -93,55 +93,56 @@ We performed two sensitivity analyses: 1) we evaluated the influence of prior sp
 We present summary statistics for maternal demographic characteristics, child sex (recorded at birth), and IQ at age seven in Table~\ref{tab:1}. The 311 study subjects did not differ significantly from the overall CCCEH cohort in terms of demographics (race/ethnicity, maternal marital status, maternal age, maternal education level), material hardship, prenatal alcohol consumption, presence of a smoker in the home, quality of the home environment, child sex, or child IQ. 
 
 \begingroup
-\renewcommand{\arraystretch}{1.075}
-\begin{table}[!h] \centering 
+\renewcommand{\arraystretch}{1.4}
+\begin{table}[!ht] \centering 
 \caption[Subject demographics in Mothers and Newborns cohort]{Subject demographics and distribution of potential confounders, model covariates, and outcome variable (N = 311).}
   \label{tab:1} 
   \addtolength{\tabcolsep}{-2pt}
-\begin{tabular}{@{\extracolsep{5pt}}l|rr}
+\begin{tabular}{l|rr}
 Characteristic & \multicolumn{2}{c}{Value\textsuperscript{*}} \\
 \hline 
-\\[-3ex] \hline \\[-2.5ex]
+\hline
 Ethnicity & \\
 \hline
-\hspace{1em}African American & 107 & 34.4\\
+\hspace{1em}African American & 107 & 34.4 \\
 \hline
-\hspace{1em}Hispanic/Latina & 204 & 65.6\\
+\hspace{1em}Hispanic/Latina & 204 & 65.6 \\
 \hline
 Maternal education & \\
 \hline
-\hspace{1em} $\le$ High school degree or equivalent & 196 & 63.0\\
+\hspace{1em} $\le$ High school degree or equivalent & 196 & 63.0 \\
 \hline
-\hspace{1em} $<$ High school degree & 115 & 37.0\\
+\hspace{1em} $<$ High school degree & 115 & 37.0 \\
 \hline
-Material hardship & 128 & 41.2\\
+Material hardship & 128 & 41.2 \\
 \hline
 Marital status & \\
 \hline
-\hspace{1em}Never Married & 209 & 67.2\\
+\hspace{1em}Never Married & 209 & 67.2 \\
 \hline
-\hspace{1em}Ever Married & 102 & 32.8\\
+\hspace{1em}Ever Married & 102 & 32.8 \\
 \hline
-Prenatal alcohol consumption & 77 & 24.8\\
+Prenatal alcohol consumption & 77 & 24.8 \\
 \hline
-Smoker in home & 94 & 30.2\\
+Smoker in home & 94 & 30.2 \\
 \hline
 Child sex & \\
 \hline
-\hspace{1em}Male & 166 & 53.4\\
+\hspace{1em}Male & 166 & 53.4 \\
 \hline
-\hspace{1em}Female & 145 & 46.6\\
+\hspace{1em}Female & 145 & 46.6 \\
 \hline
-Maternal age at delivery & 25.5 & 4.9\\
+Maternal age at delivery & 25.5 & 4.9 \\
 \hline
-Maternal IQ & 84.9 & 13.4\\
+Maternal IQ & 84.9 & 13.4 \\
 \hline
-HOME scale & 39.3 & 6.3\\
+HOME scale & 39.3 & 6.3 \\
 \hline
-Child Full Scale IQ & 97.3 & 13.3\\
+Child Full Scale IQ & 97.3 & 13.3 \\
 \hline 
-\\[-3ex] \hline \\[-2.5ex]
-\multicolumn{3}{l}{\rule{0pt}{1em}\textsuperscript{*} n, \%; Mean, SD}\\
+\hline
+%\vspace{1ex}
+\multicolumn{3}{l}{\textsuperscript{*} n, \%; Mean, SD} 
 \end{tabular}
 \end{table}
 \endgroup 
@@ -149,9 +150,9 @@ Child Full Scale IQ & 97.3 & 13.3\\
 Table~\ref{tab:conc} describes the distributions of phenol and phthalate metabolite concentrations measured in maternal spot urine samples. Fourteen phenols and phthalate metabolites were detected in 93\%--100\% of samples; the exceptions were BPB (38\% $<$ LOD), triclosan (20\% $<$ LOD), and MEHP (16\% $<$ LOD). We depict Spearman correlations ($r_S$) between specific-gravity adjusted phenols and phthalate metabolites in Figure~\ref{fig:corr}. Phthalate metabolites were generally positively correlated. Four metabolites of DEHP had correlations ($>$ 0.7). Within phenols, 24-DCP and 25-DCP ($r_S$ = 0.94) and PPB and MPB ($r_S$ = 0.75) showed the highest correlations. MEP was notably correlated with two phenols ($r_S$ = 0.42 with PPB, and $r$ = 0.44 with MPB), which appeared in the \bnmf solution.
 
 \begingroup
-\renewcommand{\arraystretch}{1.075}
-\begin{table}[!h] \centering 
-  \caption[Distribution of phthalate metabolites and phenols]{Distribution of phthalate metabolites and phenols (ng/ml) in maternal spot urine and distribution of \bnmfc-identified patterns in the overall mixture during the third trimester of pregnancy (n = 343).} 
+\renewcommand{\arraystretch}{1.25}
+\begin{table}[!ht] \centering 
+  \caption[Distribution of phthalate metabolites and phenols]{Distribution of phthalate metabolites and phenols (ng/ml) in maternal spot urine and distribution of \bnmfc-identified patterns in the overall mixture during the third trimester of pregnancy (n = 343).}
   \label{tab:conc} 
 \begin{tabular}{@{\extracolsep{5pt}} llrrrr} 
 Class & Chemical & \% \textless LOD & 25\% & Median & 75\% \\ 
@@ -190,6 +191,13 @@ Class & Chemical & \% \textless LOD & 25\% & Median & 75\% \\
 \subsection{Traditional health models}
 Table~\ref{tab:reg} displays associations between prenatal exposure to \bnmfc-identified EDC patterns and child IQ in males and females from multivariable linear regression models. In these traditional regression models, we used the mean of each individual score distribution as a point estimate to assign pattern exposure. Adjusting for coviarates, full scale IQ was, on average, negatively associated with phthalate + BPA exposure in females ($\beta$ = -3.4; 95\% confidence interval (CI) = -6.5, -0.4) but not in males ($\beta$ = -0.4; 95\% CI = -2.4, 1.7). The interaction term between males and females was marginally significant (p-value $<$ 0.1). Phenols + MEP were not associated with full scale IQ in males ($\beta$ = -0.8; 95\% CI =  -2.7, 1.1), but there was suggestive evidence of a positive association in females ($\beta$ = 2.0; 95\% CI = -0.3, 4.2). The interaction term between males and females was, again, marginally significant (p-value $<$ 0.1).
 
+\subsection{Bayesian health models}
+Adjusting for covariates, full scale IQ was, on average, negatively associated with phthalate + BPA exposure in females ($\beta$ = -3.4; 95\% credible interval (CrI) = -6.7, -0.4) but not in males ($\beta$ = -0.4; 95\% CrI = -2.5, 1.7). Phenols + MEP were not associated with full scale IQ in females ($\beta$ = 2.1; 95\% CrI = -0.3, 4.5) or males ($\beta$ = -0.8; 95\% CrI = -2.8, 1.1). \\
+
+\subsection{Sensitivity Analyses}
+\subsubsection{Alternative prior distributions}
+Altering the prior structure had no effect on inference. $\beta$ coefficients were, in general, unaffected or slightly farther from the null with weakly informative priors and in the hybrid scenario, and 95\% credible intervals were generally unaffected or slightly wider. As in the main analysis, full scale IQ was, on average, negatively associated with phthalates + BPA exposure in females but not in males. Phenols + MEP had no association with child intelligence. Results from Bayesian hierarchical regression models with differently-specified priors are available in Supplemental Table~\ref{tab:supreg}.
+
 \clearpage
 \begin{landscape}
 \begin{figure}
@@ -200,7 +208,6 @@ Table~\ref{tab:reg} displays associations between prenatal exposure to \bnmfc-id
 \label{fig:corr}
 \end{subfigure}
 \hspace{5em}
-%\hfill
 \begin{subfigure}[b]{0.3\textwidth}
 \includegraphics[scale = 0.69]{./figures/eh_loadings.pdf}
 \caption{\bnmfc-identified loadings}
@@ -210,13 +217,11 @@ Table~\ref{tab:reg} displays associations between prenatal exposure to \bnmfc-id
 \caption[Intra-chemical correlations and \bnmfc-identified chemical loadings]{(\textbf{a}) Spearman correlations between 17 specific gravity-adjusted endocrine disrupting chemicals measured in 343 pregnant women from the Mothers \& Newborns cohort. (\textbf{b}) \bnmfc-identified chemical loadings. \bnmf discovered two underlying patterns in the mixture of seventeen phenols and phthalate metabolites in pregnant women. One pattern was characterized by phthalates and BPA, the other by phenols and MEP.}
 \end{figure}
 \end{landscape}
-
-\subsection{Bayesian health models}
-Adjusting for covariates, full scale IQ was, on average, negatively associated with phthalate + BPA exposure in females ($\beta$ = -3.4; 95\% credible interval (CrI) = -6.7, -0.4) but not in males ($\beta$ = -0.4; 95\% CrI = -2.5, 1.7). Phenols + MEP were not associated with full scale IQ in females ($\beta$ = 2.1; 95\% CrI = -0.3, 4.5) or males ($\beta$ = -0.8; 95\% CrI = -2.8, 1.1). \\
+\clearpage
 
 \begingroup
-\renewcommand{\arraystretch}{1.2}
-\begin{table}[!h] \centering 
+\renewcommand{\arraystretch}{1.25}
+\begin{table}[!ht] \centering 
   \caption[Multivariable regression models of WISC-IV full scale IQ]{Results from multivariable regression models of WISC-IV full scale IQ at age seven.} 
   \label{tab:reg} 
 \begin{tabular}{llrcrc} 
@@ -241,10 +246,6 @@ Adjusting for covariates, full scale IQ was, on average, negatively associated w
 \end{tabular} 
 \end{table} 
 \endgroup
-
-\subsection{Sensitivity Analyses}
-\subsubsection{Alternative prior distributions}
-Altering the prior structure had no effect on inference. $\beta$ coefficients were, in general, unaffected or slightly farther from the null with weakly informative priors and in the hybrid scenario, and 95\% credible intervals were generally unaffected or slightly wider. As in the main analysis, full scale IQ was, on average, negatively associated with phthalates + BPA exposure in females but not in males. Phenols + MEP had no association with child intelligence. Results from Bayesian hierarchical regression models with differently-specified priors are available in Supplemental Table~\ref{tab:supreg}.
 
 \subsubsection{Assessing effects of outlying values}
 We reran multivariable regression models with the full data. We found significant deviation from linearity with the retention of these observations, which diverged from the trend in the main analysis. Supplemental Figure~\ref{fig:fulldat} contrasts our findings with the sensitivity analysis.
@@ -290,16 +291,14 @@ inconsistent, indicates harmful and often sex-specific effects of EDCs in child 
 \subsection{Alternative prior distributions}
 \label{sec:priors}
 Noninformative prior specifications on the Bayesian model made the resulting parameter estimates more comparable with our traditional model. In Bayesian statistics, however, `weakly' informative priors are generally preferred because noninformative priors place a large portion of their probability mass on unreasonable parameters. In our example with child IQ as the outcome, a noninformative prior on $\beta$ implies that we believe a coefficient of $\pm$ 100 is as likely as a coefficient of zero, which is, of course, implausible. Weakly informative priors, on the other hand, contain enough information to regularize the posterior distribution (i.e., to keep it between relatively reasonable bounds), but they do not attempt to fully capture previous beliefs or to heavily weight scientific knowledge about underlying parameters \citep{bda3}. We set up two scenarios, one with weakly informative priors and the other with a combination of weakly informative and noninformative priors, as sensitivity analyses. These encoded information about parameters and we designed them so as not to overly influence the posterior. Our weakly informative priors were modeled after \citet{gelman2020regression}. We fit two alterative prior structures, (1) weakly informative, where the $\beta$ distribution for phthalates + BPA was based on previous results (explained below) and all other coefficients were centered at zero, and (2) weakly informative/noninformative hybrid, where the $\beta$ distribution for phthalates + BPA was based on previous results, the $\beta$ for phenols + MEP was distributed around zero, and all covariates kept noninformative priors. The two schemes included the same priors on $\alpha$, $\sigma$, and the $\beta$ coefficients of interest as follows,
-\begin{equation*}
-\begin{aligned}
+\begin{align*}
 & \alpha \sim \mathcal{N}(100, 45), 
 & \sigma \sim \operatorname{Exponential}(\frac{1}{sd_y}), \\
 & \beta_{PHT+BPA} \sim \mathcal{N}(-1.19, 2.5 \cdot sd_y), 
 & \beta_{PHT+BPA \cdot s} \sim \mathcal{N}(-0.03, 2.5 \cdot sd_y), \\
 & \beta_{PHN+MEP} \sim \mathcal{N}(0, 2.5 \cdot sd_y), 
 & \beta_{PHN+MEP \cdot s} \sim \mathcal{N}(0, 2.5 \cdot sd_y)
-\end{aligned}
-\end{equation*}
+\end{align*}
 
 Here, $sd_y$ is the standard deviation of the observed full scale IQ. $\beta_{PHT+BPA}$ and $\beta_{PHN+MEP}$ are the coefficients for the phthalate + BPA pattern and the phenol + MEP pattern, respectively; $\beta_{PHT+BPA \cdot s}$ and $\beta_{PHN+MEP \cdot s}$ are the coefficients for the corresponding interaction terms with sex. The weakly informative and weakly/non- informative hybrid structures differed only in the prior distributions on covariates. In the first scenario, $\beta_{\ldots} \sim \mathcal{N}(0, 2.5 \cdot sd_y)$ to serve as a soft regularizers, where $\beta_{\cdots}$ includes the coefficients for sex and all covariates. In the second, priors on sex and other covariates were flat over $\beta_{\ldots} \sim \mathcal{U}(-\infty, \infty)$, so as not to affect inference. Because WISC-IV IQ scales are standardized to a mean of 100 and a standard deviation of 15 \citep{wechsler2003wechsler}, we modeled $\alpha$ as normally distributed around 100 with a wider standard deviation. The specified distributions and parameters for $\sigma$ and the $\beta$ coefficients also considered the scale of the outcome \citep{gelman2020regression}. The error in the model was drawn from an exponential distribution with rate $= \frac{1}{sd_y}$; this placed the bulk of the distribution below $sd_y$, with a long right tail to accommodate uncertainty. Weakly informative priors on $\beta$ coefficients for patterns and interaction terms were normally distributed. For phthalates + BPA, we used \citeauthor{factor2014persistent}'s results to determine our prior means. They estimated sex-specific individual associations between full scale IQ and five of the eight phthalate metabolites that loaded strongly with phthalates + BPA \citep{factor2014persistent}. We took the average coefficient size across the five reported in that paper in males as phthalates + BPA's prior mean. We took the average difference between coefficients in females and males as the prior mean of the interaction between phthalates + BPA and sex. We had no prior knowledge on the association between phenols + MEP and full scale IQ, so for phenols + MEP and the pattern's interaction term with and sex, we set the means to zero. For both patterns and both interaction terms, we set the standard deviation to $2.5 \cdot sd_y$ to make these priors only weakly informative. 
 
@@ -356,9 +355,9 @@ Child Full Scale IQ & 98.5 & 12.9 & 97.3 & 13.3 & 0.2 & 97.3 & 13.3 & 0.2 & 97.3
 \endgroup
 \end{landscape}
 
-\clearpage
+
 \begingroup
-\renewcommand{\arraystretch}{1.2}
+\renewcommand{\arraystretch}{1.25}
 \begin{table} \centering 
   \caption[Bayesian hierarchical models of WISC-IV full scale IQ]{Results from Bayesian hierarchical regression models of WISC-IV full scale IQ at age seven with alternative prior specifications.} 
   \label{tab:supreg} 
@@ -385,7 +384,6 @@ Child Full Scale IQ & 98.5 & 12.9 & 97.3 & 13.3 & 0.2 & 97.3 & 13.3 & 0.2 & 97.3
 \end{table} 
 \endgroup
 
- \clearpage
 \begin{figure}
 \centering
 \includegraphics[scale = 0.85]{./figures/sense_plot.pdf}
