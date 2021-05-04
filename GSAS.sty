@@ -114,14 +114,15 @@
 
 % for continuation pages of the ToC, LoF, LoT
 \makepagestyle{toc}
-% \makeevenfoot{toc}{}{\thepage}{}
-% \makeoddfoot{toc}{}{\thepage}{}
+\makeevenfoot{toc}{}{\thepage}{}
+\makeoddfoot{toc}{}{\thepage}{}
 \makepagestyle{lof}
-% \makeevenfoot{lof}{}{\thepage}{}
-% \makeoddfoot{lof}{}{\thepage}{}
+\makeevenfoot{lof}{}{\thepage}{}
+\makeoddfoot{lof}{}{\thepage}{}
 \makepagestyle{lot}
-% \makeevenfoot{lot}{}{\thepage}{}
-% \makeoddfoot{lot}{}{\thepage}{}
+\makeevenfoot{lot}{}{\thepage}{}
+\makeoddfoot{lot}{}{\thepage}{}
+% ^ need this for page numbering for some reason
 
 % The LoF
 \renewcommand{\listfigurename}{List of Figures}
@@ -130,7 +131,7 @@
 % The LoT
 \renewcommand{\listtablename}{List of Tables}
 \addtodef{\listoftables}{\clearpage\pagestyle{lot}}{}
-%\renewcommand*{\lotheadstart}{\vspace*{-\topfiddle}}
+% \renewcommand*{\lotheadstart}{\vspace*{-\topfiddle}}
 % \renewcommand*{\afterlottitle}{\thispagestyle{plain}
 %   \par\nobreak \par\nobreak} 
 % this pulls the list closer to the heading
@@ -138,13 +139,18 @@
 % ToC
 \renewcommand{\contentsname}{Table of Contents}
 \addtodef{\tableofcontents}{\clearpage\pagestyle{toc}}{}
-%\renewcommand*{\tocheadstart}{\vspace*{-\topfiddle}}
+% \renewcommand*{\tocheadstart}{\vspace*{-\topfiddle}}
+% \renewcommand*{\aftertoctitle}{\thispagestyle{plain}\par\nobreak \mbox{}\hfill{}\par\nobreak}
 
 % \renewcommand*{\cftchapterfont}{\normalfont}
 % \renewcommand*{\cftchapterpagefont}{\normalfont}
 % \renewcommand*{\cftchapterleader}{%
 % \cftchapterfont\cftdotfill{\cftchapterdotsep}}
 % \renewcommand*{\cftchapterdotsep}{\cftdotsep}
+
+% no extra space before the entry, or in the LoF/LoT
+\setlength{\cftbeforechapterskip}{0pt plus 0pt}
+\renewcommand*{\insertchapterspace}{}
 
 % chapter style for appendices, text comes on following page
 % \makechapterstyle{GSASappendix}{%
@@ -161,7 +167,7 @@
 % \renewcommand*{\afterchaptertitle}{\clearpage}}
 
 % different chapter style for appendices, (and double spaced)
-%\addtodef{\appendix}{}{\chapterstyle{GSASappendix}\GSASSpacing}
+% \addtodef{\appendix}{}{\chapterstyle{GSASappendix}\GSASSpacing}
 
 % (subsub)section styles
 \setbeforesecskip{-1\onelineskip plus -1ex minus -.2ex}
@@ -251,21 +257,21 @@ All Rights Reserved\\
 \clearpage}}
 
 % make sure no abstract pages get numbered
-% \newcommand{\theabstract}{%
-% {\clearpage 
-% \chapter*{Abstract}
-% \begingroup
-% \thispagestyle{empty} % no number on first page
-% %\pagestyle{empty}     % no number on subsequent pages
-% \vspace{-2.5em}
-% \begin{center}
-%     \large \SingleSpace \textbf \GSAStitle \\ \ \\
-%     \GSASauthor \\
-% \end{center}
-% \GSASabstract
-% \endgroup
-% \clearpage
-% }}
+\newcommand{\theabstract}{%
+{\clearpage 
+\chapter*{Abstract}
+\begingroup
+\thispagestyle{empty} % no number on first page
+\pagestyle{empty}     % no number on subsequent pages
+\vspace{-2.5em}
+\begin{center}
+    \large \SingleSpace \textbf \GSAStitle \\ \ \\
+    \GSASauthor \\
+\end{center}
+\GSASabstract
+\clearpage
+\endgroup
+}}
 
 % make it easy to center any dedication
 \newcommand{\thededication}{%
