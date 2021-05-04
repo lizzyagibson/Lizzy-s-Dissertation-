@@ -1,11 +1,4 @@
-\chapter*{Abstract}
-\vspace{-2.5em}
-\begin{center}
-    \large \textbf{Statistical and machine learning methods for pattern identification in environmental mixtures} \\
-    Elizabeth Atkeson Gibson \\
-\end{center}
-\thispagestyle{empty}
-
+\setabstract{
 Abstract of dissertation. In the abstract, you must (1) present the problem of the thesis/dissertation, (2) discuss the materials and methods used, and (3) state the conclusions reached. Individual chapters should not have abstracts.	Abstract of dissertation. In the abstract, you must (1) present the problem of the thesis/dissertation, (2) discuss the materials and methods used, and (3) state the conclusions reached. Individual chapters should not have abstracts.
 	
 \textbf{Intro abstract}
@@ -35,6 +28,5 @@ Phthalates and BPA found in food packaging and can linings formed a pattern of E
 Environmental health researchers may aim to identify exposure patterns that represent sources, product use, or behaviors that give rise to mixtures of potentially harmful environmental chemical exposures. Existing pattern recognition methods employed in this field are limited by user-specified pattern number, lack of interpretability of patterns in terms of human understanding, and lack of uncertainty quantification. We adapted Bayesian non-parametric non-negative matrix factorization (\bnmfc) to identify patterns of chemical exposures when the number of patterns is not known \textit{a priori}. We placed non-negative continuous priors on pattern loadings and individual scores and used a non-parametric sparse prior to estimate the pattern number. To test this method, we simulated 12,100 datasets with increasing levels of complexity in pattern structure and increasingly noisy scenarios. We assessed \bnmfc's coverage of true simulated scores and compared our model's performance with methods frequently used in environmental health. \bnmf estimated the true number of patterns for 99\% of simulated datasets. \bnmfc's variational confidence intervals achieved 95\% coverage across all levels of structural complexity with up to 40\% added noise. \bnmf performed comparably with frequentist methods in terms of overall prediction and estimation of underlying loadings and scores.
 
 After validation, we applied \bnmf to a mixture of 17 potentially endocrine disrupting chemicals (EDCs) measured in 343 pregnant women in the Columbia Center for Children’s Environmental Health's Mothers and Newborns Cohort.  We identified two patterns of EDC exposure in pregnant women, corresponding well with known EDC sources. \bnmf can be a useful tool to identify patterns in environmental mixtures.
+} % this closes abstract environment
 
-\thispagestyle{empty} 
-\clearpage

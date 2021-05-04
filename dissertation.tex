@@ -4,13 +4,21 @@
 
 \begin{document}
 
-\maxtocdepth{subsection} % put 4 levels into the toc
+\maxtocdepth{subsection} % put 3 levels into the toc
 
 % Fill in title page
-\settitle{Statistical and Machine \vspace{0.75ex} Learning Methods for Pattern \vspace{0.75ex} Identification in Environmental Mixtures} % your title
-\setauthor{Elizabeth Atkeson Gibson} % your full name
-\setinitial{Elizabeth A. Gibson} % your name with middle initial
-\setyear{2021} % graduation/copyright year
+
+% your title
+\settitle{Statistical and Machine Learning Methods for Pattern Identification in Environmental Mixtures} 
+% your full name
+\setauthor{Elizabeth Atkeson Gibson}
+% your name with middle initial
+\setinitial{Elizabeth A. Gibson} 
+% graduation/copyright year
+\setyear{2021}
+
+% dedication
+\setdedication{I dedicate this dissertation work to Thomas Donnally Atkeson, an environmental epidemiologist who dedicated his career to better understanding and regulating drivers of human disease and providing scientific evidence to inform policy.}
 
 % Here's the Title Page
 \thetitlepage
@@ -20,6 +28,7 @@
 
 % Here's the Abstract
 \input{./frontmatter/abstract}
+\theabstract
 
 \frontmatter % lowercase Roman page numbers for the next sections
 
@@ -34,7 +43,7 @@
 \input{./frontmatter/ack}
 
 % Dedication
-\input{./frontmatter/dedication}
+\thededication
 
 \mainmatter % begin Arabic numbers pages from here on
 

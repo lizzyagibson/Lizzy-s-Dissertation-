@@ -28,7 +28,13 @@
 \usepackage{subcaption}
 \usepackage{lscape}
 \usepackage{pdflscape}
+
+% this allows equations to split across pages
 \allowdisplaybreaks
+
+% this sets the space between the number and titles on the lof, lot
+\setlength{\cftfigurenumwidth}{1.5cm} 
+\setlength{\cfttablenumwidth}{1.5cm}
 
 % this changes the chapter title page style
 \chapterstyle{ger}
@@ -48,7 +54,6 @@
 \newcommand{\mugm}{$\mu$g/m$^3$}
 \newcommand{\bnmf}{BN$^{2}$MF }
 \newcommand{\bnmfc}{BN$^{2}$MF}
-
 \newcommand{\mak}[1]{{\color{blue} \textbf{mak:} #1}}
 \newcommand{\liz}[1]{{\color{ForestGreen} \textbf{lizzy:} #1}}
 
@@ -88,10 +93,10 @@
 \setlength{\footnotesep}{\onelineskip}
 
 % the fiddle lengths (..ta.. for title/approval page, others for prelims)
-\newlength{\toptafiddle} \setlength{\toptafiddle}{2\linespace}
-\newlength{\bottafiddle} \setlength{\bottafiddle}{0pt}
-\newlength{\topfiddle} \setlength{\topfiddle}{\toptafiddle}
-\newlength{\botfiddle} \setlength{\botfiddle}{\onelineskip}
+% \newlength{\toptafiddle} \setlength{\toptafiddle}{2\linespace}
+% \newlength{\bottafiddle} \setlength{\bottafiddle}{0pt}
+% \newlength{\topfiddle} \setlength{\topfiddle}{\toptafiddle}
+% \newlength{\botfiddle} \setlength{\botfiddle}{\onelineskip}
 
 \setlength{\parindent}{2em}
 \checkandfixthelayout[nearest]
@@ -109,14 +114,14 @@
 
 % for continuation pages of the ToC, LoF, LoT
 \makepagestyle{toc}
-\makeevenfoot{toc}{}{\thepage}{}
-\makeoddfoot{toc}{}{\thepage}{}
+% \makeevenfoot{toc}{}{\thepage}{}
+% \makeoddfoot{toc}{}{\thepage}{}
 \makepagestyle{lof}
-\makeevenfoot{lof}{}{\thepage}{}
-\makeoddfoot{lof}{}{\thepage}{}
+% \makeevenfoot{lof}{}{\thepage}{}
+% \makeoddfoot{lof}{}{\thepage}{}
 \makepagestyle{lot}
-\makeevenfoot{lot}{}{\thepage}{}
-\makeoddfoot{lot}{}{\thepage}{}
+% \makeevenfoot{lot}{}{\thepage}{}
+% \makeoddfoot{lot}{}{\thepage}{}
 
 % The LoF
 \renewcommand{\listfigurename}{List of Figures}
@@ -125,42 +130,38 @@
 % The LoT
 \renewcommand{\listtablename}{List of Tables}
 \addtodef{\listoftables}{\clearpage\pagestyle{lot}}{}
-\renewcommand*{\lotheadstart}{\vspace*{-\topfiddle}}
-\renewcommand*{\afterlottitle}{\thispagestyle{plain}
-    \par\nobreak \par\nobreak}
+%\renewcommand*{\lotheadstart}{\vspace*{-\topfiddle}}
+% \renewcommand*{\afterlottitle}{\thispagestyle{plain}
+%   \par\nobreak \par\nobreak} 
+% this pulls the list closer to the heading
 
-% Do the ToC
+% ToC
 \renewcommand{\contentsname}{Table of Contents}
 \addtodef{\tableofcontents}{\clearpage\pagestyle{toc}}{}
-\renewcommand*{\tocheadstart}{\vspace*{-\topfiddle}}
-\renewcommand*{\aftertoctitle}{\thispagestyle{plain}\par\nobreak \mbox{}\hfill{}\par\nobreak}
+%\renewcommand*{\tocheadstart}{\vspace*{-\topfiddle}}
 
-\renewcommand*{\cftchapterfont}{\normalfont}
-\renewcommand*{\cftchapterpagefont}{\normalfont}
-\renewcommand*{\cftchapterleader}{%
-\cftchapterfont\cftdotfill{\cftchapterdotsep}}
-\renewcommand*{\cftchapterdotsep}{\cftdotsep}
-
-% no extra space before the entry, or in the LoF/LoT
-\setlength{\cftbeforechapterskip}{0pt plus 0pt}
-\renewcommand*{\insertchapterspace}{}
+% \renewcommand*{\cftchapterfont}{\normalfont}
+% \renewcommand*{\cftchapterpagefont}{\normalfont}
+% \renewcommand*{\cftchapterleader}{%
+% \cftchapterfont\cftdotfill{\cftchapterdotsep}}
+% \renewcommand*{\cftchapterdotsep}{\cftdotsep}
 
 % chapter style for appendices, text comes on following page
-\makechapterstyle{GSASappendix}{%
-\setlength{\beforechapskip}{-\topfiddle}
-\setlength{\midchapskip}{1.0\onelineskip}
-\setlength{\afterchapskip}{1.0\onelineskip}
-\renewcommand*{\chapnamefont}{\normalfont}
-\renewcommand*{\chapnumfont}{\chapnamefont}
-\renewcommand*{\printchaptername}{%
-\chapnamefont\MakeUppercase{\@chapapp}}
-\renewcommand*{\printchapternum}{\centering\chapnumfont \thechapter}
-\renewcommand*{\chaptitlefont}{\normalfont\centering}
-\renewcommand*{\printchapternonum}{}
-\renewcommand*{\afterchaptertitle}{\clearpage}}
+% \makechapterstyle{GSASappendix}{%
+% \setlength{\beforechapskip}{-\topfiddle}
+% \setlength{\midchapskip}{1.0\onelineskip}
+% \setlength{\afterchapskip}{1.0\onelineskip}
+% \renewcommand*{\chapnamefont}{\normalfont}
+% \renewcommand*{\chapnumfont}{\chapnamefont}
+% \renewcommand*{\printchaptername}{%
+% \chapnamefont\MakeUppercase{\@chapapp}}
+% \renewcommand*{\printchapternum}{\centering\chapnumfont \thechapter}
+% \renewcommand*{\chaptitlefont}{\normalfont\centering}
+% \renewcommand*{\printchapternonum}{}
+% \renewcommand*{\afterchaptertitle}{\clearpage}}
 
 % different chapter style for appendices, (and double spaced)
-\addtodef{\appendix}{}{\chapterstyle{GSASappendix}\GSASSpacing}
+%\addtodef{\appendix}{}{\chapterstyle{GSASappendix}\GSASSpacing}
 
 % (subsub)section styles
 \setbeforesecskip{-1\onelineskip plus -1ex minus -.2ex}
@@ -169,11 +170,11 @@
 \setaftersubsecskip{1\onelineskip plus .2ex}
 
 % Captions
-\captiontitlefont{\normalfont}% title font
-\precaption{\raggedright}% for Caption N
-\captiondelim{\newline}% newline
-\captionstyle{\raggedright}% for title
-\setlength{\belowcaptionskip}{\onelineskip}
+% \captiontitlefont{\normalfont}% title font
+% \precaption{\raggedright}% for Caption N
+% \captiondelim{\newline}% newline
+% \captionstyle{\raggedright}% for title
+% \setlength{\belowcaptionskip}{\onelineskip}
 
 % for REFERENCE section
 \renewcommand*{\bibname}{\centering Bibliography}
@@ -181,7 +182,7 @@
 \renewcommand*{\biblistextra}{%
 \setlength{\itemsep}{\bibitemsep}
 \setlength{\labelwidth}{0pt}
-\setlength{\leftmargin}{3em}% hanging indent
+\setlength{\leftmargin}{3em} % hanging indent
 \setlength{\itemindent}{-\leftmargin}}
 
 \renewcommand*{\bibsection}{%
@@ -206,19 +207,27 @@
 \newcommand{\setinitial}[1]{\def\GSASinitial{#1}}
 % year
 \newcommand{\setyear}[1]{\def\GSASyear{#1}}
+% dedication
+\newcommand{\setdedication}[1]{\def\GSASdedication{#1}}
+% abstract
+\newcommand{\setabstract}[1]{\def\GSASabstract{#1}}
 
 % typesets the TITLE page
 \newcommand{\thetitlepage}{{%
 \clearpage
-\thispagestyle{empty}
+\thispagestyle{empty} % no page number
 \centering
 \vspace*{\fill}
-{\huge{\textsc{\GSAStitle}}} \\ \ \\ by \\ \GSASauthor
+\begingroup
+\renewcommand{\baselinestretch}{2.25}\selectfont
+{\HUGE{\textsc{\GSAStitle}}} \\ \ \\
+\endgroup
+by \\ \GSASauthor
 \vfill
 {\SingleSpace
-Submitted in partial fulfillment of the\\
-  requirements for the degree of\\
-  Doctor of Philosophy\\
+Submitted in partial fulfillment of the \\
+  requirements for the degree of \\
+  Doctor of Philosophy \\
   under the Executive Committee \\
   of the Graduate School of Arts and Sciences \\
 }
@@ -231,14 +240,37 @@ Columbia University  \\
 \newcommand{\thecopyright}{{%
 \clearpage
 \thispagestyle{empty} % No page number
-\setcounter{page}{0} %For optimizing page number display in pdf reader
+\setcounter{page}{0} % For optimizing page number display in pdf reader
 \null\vfill % Pushes Copyright to the bottom of the page.
 \begin{center}
-  \SingleSpace %Keep the Copyright single-spaced
+  \SingleSpace % Keep the Copyright single-spaced
 \copyright \hspace{1mm} \GSASyear \\
 \GSASinitial \\
 All Rights Reserved\\
 \end{center}
+\clearpage}}
+
+% make it easy to center any dedication
+\newcommand{\thededication}{%
+{\clearpage \chapter{Dedication}
+\begin{vplace}[0.5] % smaller = higher, bigger = lower
+\centering 
+\textit{\GSASdedication}
+\end{vplace}
+\clearpage}}
+
+% make sure no abstract pages get numbered
+\newcommand{\theabstract}{%
+{\clearpage 
+\chapter*{Abstract}
+\thispagestyle{empty} % no number on first page
+\pagestyle{empty}     % no number on subsequent pages
+\vspace{-2.5em}
+\begin{center}
+    \large \SingleSpace \textbf \GSAStitle \\ \ \\
+    \GSASauthor \\
+\end{center}
+\GSASabstract
 \clearpage}}
 
 %% end of *.sty file

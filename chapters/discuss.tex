@@ -20,7 +20,7 @@ other methods, similar / different, similar / different from each other, why thi
 \section{Future research directions}\label{sec:future}
 To date, environmental epidemiological investigations of multi-pollutant exposures have asked a variety of research questions and developed and adapted numerous statistical and machine learning methods to address them. However, a number of important questions remain unaddressed and new challenges have become apparent. Below, we outline several challenges and opportunities for future research on environmental mixtures and pattern identification therein.
 
-\subsection{Future studies}
+\subsection{Future studies}\label{diss:future}
 This dissertation detailed work to date to adapt two pattern identification methods for use in environmental mixtures research. Both tools, however, should be considered works in progress. We plan to incorporate various methodological extensions and to apply these methods to future research questions concerning mixtures in independent study populations.
 
 For PCP-LOD we envision several elements that would improve performance in certain areas. First, as we emphasized in Chapter~\ref{sec:ch3}, when characterizing multi-pollutant exposures for use in health studies, and especially when the principal components cannot be directly measured, it is important to quantify the uncertainty in their estimation and propagate it in the health models. We propose, therefore, to extend PCP-LOD by coupling it with a bootstrap process to quantify and propagate uncertainty associated with the estimation of L and S \citep{mak14_unc}. Second, we aim to allow for repeated measures, e.g., children within schools or sequential measurements within a person, which will be correlated. As currently implemented, the Frobenius norm in the error term $\left( \|L+S-M\|_{F} \right)$ does not reflect this structure. Clustering information can be incorporated into a hypergraph, and error can be measured in a metric which reflects the smoothness of the noise with respect to the hypergraph---i.e., the Laplacian metric \citep{zhou2006learning, kaminski2019clustering}. At the same time, we aim to incorporate this clustering information into our estimation of S. For instance, since S captures rare events in the environment, it is possible that these events will occur in subjects living in close proximity. We will leverage ideas from hierarchical sparse modeling to this end, treating entries in S that belong to the same group as a group of variables, and penalizing both the sum of $\ell_2$ norms of the groups, as well as the $\ell_1$ norm within each group \citep{yan2017hierarchical, sprechmann2011c, jenatton2011proximal}.
@@ -29,11 +29,26 @@ For \bnmf we anticipate future work to reformulate the two-stage hierarchical he
 
 The patterns found in Chapters~\ref{sec:ch2} and \ref{sec:ch3} correspond well with known sources, behaviors, toxicity and chemical structure. Nevertheless, we do not yet know whether identified patterns will generalize to other populations. The NHANES data used in Chapter~\ref{sec:ch2} represents the general non-institutionalized US population; however, we did not account for the complex sampling design and weights of the study \citep{johnson2013national}. Oversampling was performed for adolescents (aged 12–19), older Americans (aged 60 and over), Mexican-Americans, African-Americans, pregnant women, and individuals at or below 130\% of the poverty level \citep{curtin2012national}, and PCP-LOD-identified patterns may represent sources or behaviors distinct to included participants. Similarly, the Mothers and Newborns cohort studied in Chapters~\ref{sec:ch3} and \ref{sec:ch4} is composed of low-income Dominican and African American mothers living in an urban environment, and the \bnmfc-identified EDC patterns may represent sources or behaviors distinct to this group. To address the potential limitation of generalizability of our current findings, future studies will attempt to replicate results in independent study populations.
 
-\subsection{Cross-disciplinary collaboration with toxicological research}
+\subsection{Cross-disciplinary collaboration with toxicologists}
 %%%%%%%%%%%%%%%%%%
 tox studies -- take mixture, expose zebra fish to it, etc
-%%%%%%%%%%%%%%%%%%
+high throughput zebrafish system OSU to investigate the developmental neurotoxicity of those mixtures in parallel epi and experimental systems.
+our methods can't id biological pathways
 
+PCP-LOD and \bnmf have many benefits over standard pattern identification methods in environmental health; however, they cannot answer all mixtures-related research questions. Notably, neither method provides evidence for biological pathways between exposure mixtures and disease. In the previous section (Section~\ref{diss:future}), we discussed a potential extension to include \bnmf in a supervised model where the health outcome informs the pattern recognition process. Cross-disciplinary collaboration with toxicological research could provide another means of identifying biological responses to observed patterns.
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
 \subsection{Environmental mixtures of interest}
 This work identified patterns underlying two environmental mixtures, one comprised of 21 PCBs, dioxins, and phenols measured in the 2001--2002 cycle of NHANES and one of 17 phenols and phthalate metabolites measured in pregnant women in New York City between 1998 and 2006. These are two of an uncountable number of conceivable chemical mixtures. The vast expanse of environmental exposures and their potential combinations present opportunities for future research on pattern recognition within an array of environmental mixtures. 
 
@@ -43,10 +58,7 @@ Another mixture of interest includes metals and metalloids, such as arsenic (As)
 
 Air pollution is an additional multi-pollutant exposure of interest. Research in source apportionment to derive information about ambient pollution sources and the amount they contribute to air pollution levels is more mature than the environmental mixtures field as a whole \citep{paatero94, sun2020positive}. Nevertheless, there remain avenues for future work. For example, uncertainty propagation continues to prove challenging. While existing research demonstrates the use of various matrix factorization and clustering algorithms to identify patterns or profiles within air pollution, the current norm is to include patterns or clusters as identified in health models \citep{austin2012framework, zanobetti2014health, sarnat2008fine, krall2017associations}. In a previous study using source apportionment to assess air pollution source-specific impacts on cardiovascular admissions, \citet{mak14_unc} showed that failure to account for this uncertainty resulted in overestimated confidence in inference, potentially spurious findings, and disagreement across methods.
 
-Of course, mixtures research need not be limited to chemicals. We can include markers of socio-economic status, demographic factors, nutrition, or built environment variable, to name a few. We can also conceptualize exposures from a more `exposomic' perspective which captures a diverse range of elements in addition to environmental chemicals, like dietary constituents, psychosocial stressors, lifestyle, and physical factors, as well as their corresponding biological responses (e.g., in the form of metabolites, hormones, or proteins) \citep{vermeulen2020exposome}.
-
-% PAHs
-% pesticides & OPFR
+Of course, mixtures research need not be limited to a single class of chemicals, or only to environmental chemicals. We can include markers of socio-economic status, demographic factors, nutrition, or built environment variable, to name a few. We can also conceptualize exposures from a more `exposomic' perspective which captures a diverse range of elements in addition to environmental chemicals, like dietary constituents, psychosocial stressors, lifestyle, and physical factors, as well as their corresponding biological responses (e.g., in the form of metabolites, hormones, or proteins) \citep{vermeulen2020exposome}.
 
 \subsection{Reproducibility in science}
 There has been substantial discourse within the scientific community concerning the reproducibility of research. If a different researcher cannot run the same analysis in the future with the same setup and get the same result, is the original work good science \citep{goodman2016does}? Reproducibility in epidemiology is made more complex by the ethical matter of personally identifiable information (PII), however, availability of the analytic code, as a minimum, allows other researchers to repeat the analysis on independently collected data \citep{peng2011reproducible}. Replication of results in a separate study population strengthens evidence \citep{peng2006reproducible}.

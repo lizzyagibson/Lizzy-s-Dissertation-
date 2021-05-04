@@ -185,7 +185,7 @@ To assess the validity of the variational confidence intervals, we defined cover
 \begingroup
 \renewcommand{\arraystretch}{1.5}
 \begin{table}[!htbp] \centering 
-  \caption{Relative error comparing predicted values and solution scores and loadings with simulated truth. Values presented are mean (standard deviation). Entries marked as ``---'' indicate that no models on that group of simulations correctly identified the number of patterns, and error on scores and loadings could not be computed. $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood.} 
+  \caption[Relative prediction error]{Relative error comparing predicted values and solution scores and loadings with simulated truth. Values presented are mean (standard deviation). Entries marked as ``---'' indicate that no models on that group of simulations correctly identified the number of patterns, and error on scores and loadings could not be computed. $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood.} 
   \label{tab_l2} 
   \addtolength{\tabcolsep}{-2pt}
 \footnotesize
@@ -232,7 +232,7 @@ We assessed model accuracy by comparing predicted values from each model with th
 \begingroup
 \renewcommand{\arraystretch}{1.5}
 \begin{table}[!htbp] \centering 
-  \caption{Cosine distance comparing predicted values and solution scores and loadings with simulated truth. Values represent mean (standard deviation). Entries marked as ``---'' indicate that no models on that group of simulations correctly identified the number of patterns, and distance on scores and loadings could not be computed. $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood.} 
+  \caption[Cosine distance]{Cosine distance comparing predicted values and solution scores and loadings with simulated truth. Values represent mean (standard deviation). Entries marked as ``---'' indicate that no models on that group of simulations correctly identified the number of patterns, and distance on scores and loadings could not be computed. $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood.} 
   \label{tab_cos}
   \addtolength{\tabcolsep}{-2pt}
 \footnotesize
@@ -278,7 +278,7 @@ PCA & 0.09 ($<$0.01) & --- & --- & 0.08 ($<$0.01) & --- & --- \\
 \begingroup
 \renewcommand{\arraystretch}{1.5}
 \begin{table}[!htbp] \centering 
-  \caption{Symmetric subspace distance comparing predicted values and solution scores and loadings with simulated truth. Values represent mean (standard deviation). $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood.} 
+  \caption[Symmetric subspace distance]{Symmetric subspace distance comparing predicted values and solution scores and loadings with simulated truth. Values represent mean (standard deviation). $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood.} 
   \label{tab_ssd}
   \addtolength{\tabcolsep}{-2pt}
 \footnotesize
@@ -328,7 +328,7 @@ To assess estimation accuracy for loadings and scores in terms of orientation, w
 Finally, we compared the linear subspaces spanned by estimated scores and estimated loadings with true underlying scores and loadings using the symmetric subspace distance. This metric allowed comparison of results that incorrectly estimated the number of patterns. Mean symmetric subspace distance and standard deviation are shown in Table~\ref{tab_ssd}. On this metric, the non-negative methods again outperformed PCA and factor analysis.
 
 \begin{figure}[!htbp]
-\caption{Ninety-five percent variational confidence interval coverage. Each square represents 100 simulated datasets colored according to median coverage (proportion of true values within estimated 95\% variational confidence intervals). On the x axis, number of distinct chemicals per pattern ranges from 10 (distinct) to 0 (overlapping). On the y axis, added noise level relative to the true standard deviation increases from 0 (no added noise) to 1 (as much added noise as true noise).}
+\caption[Variational confidence interval coverage]{Ninety-five percent variational confidence interval coverage. Each square represents 100 simulated datasets colored according to median coverage (proportion of true values within estimated 95\% variational confidence intervals). On the x axis, number of distinct chemicals per pattern ranges from 10 (distinct) to 0 (overlapping). On the y axis, added noise level relative to the true standard deviation increases from 0 (no added noise) to 1 (as much added noise as true noise).}
 \label{heatmap}
 \centering
 \includegraphics[scale = 0.7]{./figures/coverage_heat.pdf}
@@ -348,7 +348,7 @@ The number of patterns affected performance less consistently. \bnmf performed p
 
 Accurate estimation of the underlying number of patterns in these secondary simulations is quantified in Supplemental Table~\ref{tab_rank} as the proportion of simulations for which \bnmfc, NMF, factor analysis, and PCA estimated the correct pattern number. Supplemental Figure~\ref{fig:pattern_coverage} depicts \bnmf coverage over noise level and separability of patterns across values of $K$. We present relative error for predicted values and estimated scores across sample and mixture sizes for $K$ = 1, 4, and 10 in Supplemental Tables~\ref{table:sup1}, \ref{table:sup4}, and \ref{table:sup10}, respectively.
 
-\subsection{Application to a mixture of endocrine disrupting chemicals in pregnant women}
+\subsection[Application]{Application to a mixture of endocrine disrupting chemicals in pregnant women}
 \label{results_app}
 Primary data from 727 pregnant women ages 18--35 were collected as part of the Columbia Center for Children's Environmental Health's Mothers and Newborns longitudinal birth cohort. This mother-child cohort was initiated to evaluate the effects of prenatal exposure to environmental contaminants on birth outcomes and child development \citep{perera2006effect}. Multiple potential EDCs were measured in spot urine samples collected during the third trimester in a subset of 343 mothers \citep{factor2014persistent}. Here, we evaluated a mixture of 17 chemicals from two classes: nine phthalate metabolites and eight phenols. Concentrations below the limit of detection (LOD) were assigned a value of LOD/$\sqrt{2}$ \citep{hornung1990estimation}. All chemical concentrations were specific gravity-adjusted to account for urinary dilution \citep{hauser2004temporal}. Exposures were scaled by their standard deviation but not mean-centered, to retain non-negativity.
 
@@ -359,14 +359,14 @@ As preliminary analyses, we fit PCA and NMF on the exposure concentrations. For 
 We then applied \bnmf to identify exposure patterns of phenols and phthalates in pregnant women without specifying the number of patterns. We ran 100 models using variational inference (described in Section \ref{methods_vi}), and chose the run with the largest objective value for inference. \bnmf identified two patterns of EDC exposure: (1) majority phthalates, and (2) majority phenols. Two notable cross-class loadings occurred; MEP loaded with phenols, and BPA loaded with phthalates. These groupings may be explained by potential shared predominant exposure routes through personal care products (phenols and MEP) and diet (phthalates and BPA). Pattern loadings are shown in Figure~\ref{fig:patterns}. 
 
 \begin{figure}[!htbp]
-\caption{Patterns of potentially endocrine disrupting chemical exposure in pregnant women identified by \bnmf in a mixture of 17 phenols and phthalates.}
+\caption[Patterns of EDC exposure]{Patterns of potentially endocrine disrupting chemical exposure in pregnant women identified by \bnmf in a mixture of 17 phenols and phthalates.}
 \label{fig:patterns}
 \centering
 \includegraphics[scale = 0.3]{./figures/mn2_edc_loadings_flip.pdf}
 \end{figure}
 
 \begin{figure}[!htbp]
-\caption{Individual scores and 95\% variational confidence intervals on \bnmfc-identified patterns for a random subset of ten participants in the Mothers \& Newborns cohort. This shows variability across individual pattern scores and across patterns within individuals. Error bars span the upper and lower bounds of the 95\% variational confidence intervals, which display uncertainty in the estimation of individual scores.}
+\caption[Individual scores and variational confidence intervals]{Individual scores and 95\% variational confidence intervals on \bnmfc-identified patterns for a random subset of ten participants in the Mothers \& Newborns cohort. This shows variability across individual pattern scores and across patterns within individuals. Error bars span the upper and lower bounds of the 95\% variational confidence intervals, which display uncertainty in the estimation of individual scores.}
 \label{fig:scores}
 \centering
 \includegraphics[scale = 0.5]{./figures/scores_w_vci.pdf}
@@ -400,17 +400,17 @@ In Section~\ref{methods_bayesian} we described the probabilistic interpretation 
 
 With this work we aimed to improve reproducibility and robustness of pattern identification in environmental health. We incorporated a non-parametric sparse prior in a Bayesian model to estimate the number of patterns in high-dimensional environmental mixtures. This approach may aid researchers in model selection. Additionally, the Bayesian formulation allows for uncertainty quantification. \bnmf may be used as a feature selection step in a Bayesian two-stage analysis incorporating individual pattern scores and distributions as exposures in subsequent health models. Our model achieved nominal coverage even with moderate noise. In future work, we will build the hierarchical Bayesian health model and consider useful extensions, such as 1) a fully supervised model where the health outcome informs pattern identification, and 2) accounting for clustered information, e.g. repeated measurements or geographical clustering.
 
-\setcounter{figure}{0}
+{\setcounter{figure}{0} % put supplemental numbering in curly braces
 \setcounter{table}{0}
-\renewcommand{\thefigure}{S\arabic{figure}}
-\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{3.S.\arabic{figure}}
+\renewcommand{\thetable}{3.S.\arabic{table}}
 \clearpage
 \section{Supplementary Material}
 \label{sec6}
 
 \subsection{Bootstrapped confidence intervals}
 \begin{figure}[!h]
-\caption{Example distributions for variational and bootstrapped 95\% confidence intervals of \bnmf and bootstrapped 95\% confidence intervals of NMF with the Poisson likelihood. Histograms show full distributions for these three distributions over a single entry in each solution matrix, i.e., an individual's estimated score on one pattern ($\mathbb{E}[W_{i k}\mathbf{a_k}]$), a chemical's estimated loading on one pattern ($\mathbb{E}[H_{k j}]$), and an individual's predicted value for one chemical ($\mathbb{E}[W_{i k}\mathbf{a}_k]*\mathbb{E}[H_{k j}]$). Dashed black lines represent the true value. Dashed colored lines represent the variational mean (blue), bootstrapped \bnmf median (red), and bootstrapped NMF median (green). Dotted colored lines represent the 95\% confidence intervals.}
+\caption[Comparison of variational and bootstrapped confidence intervals]{Example distributions for variational and bootstrapped 95\% confidence intervals of \bnmf and bootstrapped 95\% confidence intervals of NMF with the Poisson likelihood. Histograms show full distributions for these three distributions over a single entry in each solution matrix, i.e., an individual's estimated score on one pattern ($\mathbb{E}[W_{i k}\mathbf{a_k}]$), a chemical's estimated loading on one pattern ($\mathbb{E}[H_{k j}]$), and an individual's predicted value for one chemical ($\mathbb{E}[W_{i k}\mathbf{a}_k]*\mathbb{E}[H_{k j}]$). Dashed black lines represent the true value. Dashed colored lines represent the variational mean (blue), bootstrapped \bnmf median (red), and bootstrapped NMF median (green). Dotted colored lines represent the 95\% confidence intervals.}
 \label{fig:ci_dist}
 \centering
 \includegraphics[scale = 0.65]{./figures/vci_bci_nmfci.pdf}
@@ -418,7 +418,7 @@ With this work we aimed to improve reproducibility and robustness of pattern ide
 
 \clearpage
 \begin{figure}
-\caption{Ninety-five percent confidence interval coverage for variational confidence intervals, bootstrapped \bnmf confidence intervals, and bootstrapped Poisson NMF confidence intervals. Each square represents simulation that estimated a 4 pattern solution, colored according to median coverage (proportion of true values within estimated 95\% variational confidence intervals). On the x axis, number of distinct chemicals per pattern is 10 (distinct) or 0 (overlapping). On the y axis, added noise level relative to the true standard deviation increases from 0.2 (low added noise) to 1 (as much added noise as true noise).}
+\caption[Comparison of variational and bootstrapped coverage]{Ninety-five percent confidence interval coverage for variational confidence intervals, bootstrapped \bnmf confidence intervals, and bootstrapped Poisson NMF confidence intervals. Each square represents simulation that estimated a 4 pattern solution, colored according to median coverage (proportion of true values within estimated 95\% variational confidence intervals). On the x axis, number of distinct chemicals per pattern is 10 (distinct) or 0 (overlapping). On the y axis, added noise level relative to the true standard deviation increases from 0.2 (low added noise) to 1 (as much added noise as true noise).}
 \label{fig:boot_coverage}
 \centering
 \includegraphics[scale = 0.7]{./figures/bootstrap_coverage.pdf}
@@ -431,7 +431,7 @@ With this work we aimed to improve reproducibility and robustness of pattern ide
 \begingroup
 \renewcommand{\arraystretch}{1.25}
 \begin{table}[!h] \centering 
-  \caption{Percentage of correct estimation of number of patterns describing underlying matrices in secondary simulations. Percentages were taken across 900 simulated datasets (100 datasets of each possible combination of sample sizes (200, 1,000, and 10,000) and mixture sizes (20, 40, and 100). $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood.} 
+  \caption[Estimation of $K$]{Percentage of correct estimation of number of patterns describing underlying matrices in secondary simulations. Percentages were taken across 900 simulated datasets (100 datasets of each possible combination of sample sizes (200, 1,000, and 10,000) and mixture sizes (20, 40, and 100). $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood.} 
   \label{tab_rank}
   \addtolength{\tabcolsep}{-2pt}
 \begin{tabular}{lrrr|rr}
@@ -476,7 +476,7 @@ PCA          & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
 \begingroup
 \renewcommand{\arraystretch}{1.35}
 \begin{table}[!htbp] \centering 
-  \caption{Relative error for predicted values and individual scores of rank 1 secondary simulation with + 20\% noise. Values presented are mean (standard deviation). Error was averaged over 100 simulations for each combination of sample size ($N$ = 200, 10,000), mixture size ($P$ = 20, 40, 100) and simulation strategy (distinct or overlapping patterns). Entries marked as ``---'' indicate that no models on that group of simulations correctly identified the number of patterns, and error on scores could not be computed. $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood. $^+$ $N$ = sample size.}
+  \caption[Relative error for rank 1 secondary simulations]{Relative error for predicted values and individual scores of rank 1 secondary simulation with + 20\% noise. Values presented are mean (standard deviation). Error was averaged over 100 simulations for each combination of sample size ($N$ = 200, 10,000), mixture size ($P$ = 20, 40, 100) and simulation strategy (distinct or overlapping patterns). Entries marked as ``---'' indicate that no models on that group of simulations correctly identified the number of patterns, and error on scores could not be computed. $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood. $^+$ $N$ = sample size.}
   \label{table:sup1} 
  \addtolength{\tabcolsep}{-2pt}
 \begin{tabular}{lrr|rr}
@@ -523,7 +523,7 @@ PCA & 0.22 (0.01) & 0.22 ($<$0.01) & --- & --- \\
 \begingroup
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[!htbp] \centering 
-  \caption{Relative error for predicted values and estimated individual scores of rank 4 secondary simulation with + 20\% noise. Values presented are mean (standard deviation). Error was averaged over 100 simulations for each combination of sample size ($N$ = 200, 10,000), mixture size ($P$ = 20, 40, 100) and simulation strategy (distinct or overlapping patterns). $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood. $^+$ $N$ = sample size.}
+  \caption[Relative error for rank 4 secondary simulations]{Relative error for predicted values and estimated individual scores of rank 4 secondary simulation with + 20\% noise. Values presented are mean (standard deviation). Error was averaged over 100 simulations for each combination of sample size ($N$ = 200, 10,000), mixture size ($P$ = 20, 40, 100) and simulation strategy (distinct or overlapping patterns). $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood. $^+$ $N$ = sample size.}
   \label{table:sup4} 
  \addtolength{\tabcolsep}{-2pt}
 \small
@@ -575,7 +575,7 @@ PCA & 0.11 (0.02) & 0.09 ($<$0.01) & 0.09 (0.02) & 0.07 ($<$0.01) & 3.18 (0.11) 
 \begingroup
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[!htbp] \centering 
-  \caption{\small Relative error for predicted values and individual scores of rank 10 secondary simulation with + 20\% noise. Values presented are mean (standard deviation). Error was averaged over 100 simulations for each combination of sample size ($N$ = 200, 10,000), mixture size ($P$ = 20, 40, 100) and simulation strategy (distinct or overlapping patterns). Entries marked as ``---'' indicate that no models on that group of simulations correctly identified the number of patterns, and error on scores could not be computed. $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood. $^+$ $N$ = sample size.} 
+  \caption[Relative error for rank 10 secondary simulations]{\small Relative error for predicted values and individual scores of rank 10 secondary simulation with + 20\% noise. Values presented are mean (standard deviation). Error was averaged over 100 simulations for each combination of sample size ($N$ = 200, 10,000), mixture size ($P$ = 20, 40, 100) and simulation strategy (distinct or overlapping patterns). Entries marked as ``---'' indicate that no models on that group of simulations correctly identified the number of patterns, and error on scores could not be computed. $^*$ FA = factor analysis; NMF-$\ell_2$ = NMF with $\ell_2$ penalty; NMF-P = NMF with Poisson likelihood. $^+$ $N$ = sample size.} 
   \label{table:sup10} 
  \addtolength{\tabcolsep}{-2pt}
 \small
@@ -626,17 +626,18 @@ PCA & 0.22 (0.02) & 0.13 ($<$0.01) & 0.18 (0.02) & 0.17 (0.01) & 1.99 (0.03) & 1
 \subsection{Variational confidence interval coverage for secondary simulations}
 
 \begin{figure}[!htbp]
-\caption{Ninety-five percent variational confidence interval coverage across simulations of different dimensions. Squares are colored according to median coverage (proportion of true values within estimated 95\% variational confidence intervals). Median was taken across all solutions that estimated the correct number of patterns for $K$ = 1, 4, and 10. On the x axis, number of distinct chemicals per pattern is 10 (distinct) or 0 (overlapping). On the y axis, added noise level relative to the true standard deviation increases from 0.2 (low added noise) to 1 (as much added noise as true noise). Each panel describes simulations of a different size, with sample size in columns and mixture size in rows.}
+\caption[Variational coverage for secondary simulations across dimension]{Ninety-five percent variational confidence interval coverage across simulations of different dimensions. Squares are colored according to median coverage (proportion of true values within estimated 95\% variational confidence intervals). Median was taken across all solutions that estimated the correct number of patterns for $K$ = 1, 4, and 10. On the x axis, number of distinct chemicals per pattern is 10 (distinct) or 0 (overlapping). On the y axis, added noise level relative to the true standard deviation increases from 0.2 (low added noise) to 1 (as much added noise as true noise). Each panel describes simulations of a different size, with sample size in columns and mixture size in rows.}
 \label{fig:dim_coverage}
 \centering
 \includegraphics[scale = 0.8]{./figures/coverage_dim_np.pdf}
 \end{figure}
 
 \begin{figure}[!htbp]
-\caption{Ninety-five percent variational confidence interval coverage across simulations with different values of $K$. Squares are colored according to median coverage (proportion of true values within estimated 95\% variational confidence intervals). Median was taken across all solutions that estimated the correct number of patterns for all combinations of $N$ = 200, 1,000, and 10,000 and $P$ = 20, 40, and 100. On the x axis, number of distinct chemicals per pattern is 10 (distinct) or 0 (overlapping). On the y axis, added noise level relative to the true standard deviation increases from 0.2 (low added noise) to 1 (as much added noise as true noise). Each panel describes simulations of a different rank, with each column representing a different number of patterns. Gray squares indicate that \bnmf never estimated the correct pattern number.}
+\caption[Variational coverage for secondary simulations across rank]{Ninety-five percent variational confidence interval coverage across simulations with different values of $K$. Squares are colored according to median coverage (proportion of true values within estimated 95\% variational confidence intervals). Median was taken across all solutions that estimated the correct number of patterns for all combinations of $N$ = 200, 1,000, and 10,000 and $P$ = 20, 40, and 100. On the x axis, number of distinct chemicals per pattern is 10 (distinct) or 0 (overlapping). On the y axis, added noise level relative to the true standard deviation increases from 0.2 (low added noise) to 1 (as much added noise as true noise). Each panel describes simulations of a different rank, with each column representing a different number of patterns. Gray squares indicate that \bnmf never estimated the correct pattern number.}
 \label{fig:pattern_coverage}
 \centering
 \includegraphics[scale = 0.8]{./figures/coverage_dim_k.pdf}
 \end{figure}
+} % put supplemental numbering in curly braces
 
 \clearpage
