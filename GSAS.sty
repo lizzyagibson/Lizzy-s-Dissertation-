@@ -250,6 +250,23 @@ All Rights Reserved\\
 \end{center}
 \clearpage}}
 
+% make sure no abstract pages get numbered
+% \newcommand{\theabstract}{%
+% {\clearpage 
+% \chapter*{Abstract}
+% \begingroup
+% \thispagestyle{empty} % no number on first page
+% %\pagestyle{empty}     % no number on subsequent pages
+% \vspace{-2.5em}
+% \begin{center}
+%     \large \SingleSpace \textbf \GSAStitle \\ \ \\
+%     \GSASauthor \\
+% \end{center}
+% \GSASabstract
+% \endgroup
+% \clearpage
+% }}
+
 % make it easy to center any dedication
 \newcommand{\thededication}{%
 {\clearpage \chapter{Dedication}
@@ -257,20 +274,6 @@ All Rights Reserved\\
 \centering 
 \textit{\GSASdedication}
 \end{vplace}
-\clearpage}}
-
-% make sure no abstract pages get numbered
-\newcommand{\theabstract}{%
-{\clearpage 
-\chapter*{Abstract}
-\thispagestyle{empty} % no number on first page
-\pagestyle{empty}     % no number on subsequent pages
-\vspace{-2.5em}
-\begin{center}
-    \large \SingleSpace \textbf \GSAStitle \\ \ \\
-    \GSASauthor \\
-\end{center}
-\GSASabstract
 \clearpage}}
 
 %% end of *.sty file
