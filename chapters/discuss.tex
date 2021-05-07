@@ -5,7 +5,7 @@ This dissertation aimed to adapt pattern recognition methods employed in other f
 \section{Our findings \& current research}\label{sec:summarize}
 
 \subsection{Dissertation findings}\label{sec:findings}
-We introduced two pattern identification methods adapted from computer vision and geological physics \citep{candes2011robust, zhou2010stable, holtzman2018machine}. We tailored principal component pursuit (PCP) and Bayesian non-negative non-parametric namtrix factorization (\bnmfc) to better suit environmental data.
+We introduced two pattern identification methods adapted from computer vision and geological physics \citep{candes2011robust, zhou2010stable, holtzman2018machine}. We tailored principal component pursuit (PCP) and Bayesian non-negative non-parametric matrix factorization (\bnmfc) to better suit environmental data.
 
 For PCP (Chapter~\ref{sec:ch2}), we began with the additive decomposition of an exposure mixture into a low-rank matrix containing consistent patterns of exposure across pollutants and a sparse matrix isolating unique or extreme exposure events. We then incorporated two existing extensions, (1) a non-convex rank penalty that performs well with data that may not have a strong underlying low-rank structure, and (2) a recent formulation of the objective function that removes the need for parameter tuning. We further included (1) a non-negativity constraint to enhance interpretability of identified patterns, (2) a modified algorithm to allow for missing values, and (3) a separate penalty for chemicals measured below the limit of detection (PCP-LOD). Introduction of the sparse matrix is especially novel, as unusual or extreme exposure events are usually discarded or ignored by standard methods.
 
