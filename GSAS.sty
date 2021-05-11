@@ -26,8 +26,9 @@
 \usepackage{authblk}
 \usepackage{setspace}
 \usepackage{subcaption}
-\usepackage{lscape}
 \usepackage{pdflscape}
+\usepackage{soul}  % this allows highlighting
+\usepackage{color} % this colors the highlighting
 
 % this allows equations to split across pages
 \allowdisplaybreaks
@@ -55,7 +56,11 @@
 \newcommand{\bnmf}{BN$^{2}$MF }
 \newcommand{\bnmfc}{BN$^{2}$MF}
 \newcommand{\mak}[1]{{\color{blue} \textbf{mak:} #1}}
-\newcommand{\liz}[1]{{\color{ForestGreen} \textbf{lizzy:} #1}}
+\newcommand{\liz}[1]{{\color{red} \textbf{lizzy:} #1}}
+\newcommand{\rootpcp}{$\sqrt{PCP}$ }
+\newcommand{\rootpcpc}{$\sqrt{PCP}$}
+\newcommand{\ncpcp}{$nc\sqrt{PCP}$ }
+\newcommand{\ncpcpc}{$nc\sqrt{PCP}$}
 
 \setverbatimfont{\normalfont}% make verbatims use the body font
 \renewcommand*{\foottextfont}{\normalfont\normalsize}
@@ -224,6 +229,7 @@
 \newcommand{\thetitlepage}{{%
 \clearpage
 \thispagestyle{empty} % no page number
+%\pagenumbering{0} % For removing page number display in pdf reader
 \centering
 \vspace*{\fill}
 \begingroup
@@ -248,7 +254,7 @@ Columbia University  \\
 \newcommand{\thecopyright}{{%
 \clearpage
 \thispagestyle{empty} % No page number
-\setcounter{page}{0} % For optimizing page number display in pdf reader
+%\pagenumbering{0} % For removing page number display in pdf reader
 \null\vfill % Pushes Copyright to the bottom of the page.
 \begin{center}
   \SingleSpace % Keep the Copyright single-spaced
@@ -265,6 +271,7 @@ All Rights Reserved\\
 \begingroup
 \thispagestyle{empty} % no number on first page
 \pagestyle{empty}     % no number on subsequent pages
+%\pagenumbering{0} % For removing page number display in pdf reader
 \vspace{-2.5em}
 \begin{center}
     \large \SingleSpace \textbf \GSAStitle \\ \ \\
