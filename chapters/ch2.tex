@@ -35,7 +35,7 @@ When analyzing high-dimensional datasets, a major challenge is how to recover lo
 
 Traditional methods to handle observations $<$ LOD include single and multiple imputation, the most common implementation being imputation with LOD/$\sqrt{2}$ \citep{barr2006survey}. This method was proposed in 1990 as providing more accurate estimation of the mean and standard deviation than imputation with LOD/2 and improved computational efficiency over a maximum likelihood method \citep{hornung1990estimation}. However, predictive accuracy is not often the goal in environmental epidemiology, and computational speed is no longer a barrier to new methods. Furthermore, substitution of values $<$ LOD with a fixed value (e.g., LOD/$\sqrt{2}$), especially when some information is available, will impact the distribution of the data, potentially severely impacting exposure pattern identification in the study population \citep{helsel1990less}.
 
-Here, we introduce a novel technique to identify patterns in environmental mixtures, adapting a robust and well-established method for data dimensionality reduction and pattern recognition in computer vision applications, principal component pursuit (PCP). PCP decomposes the exposure data matrix into a low-rank matrix (to identify underlying patterns of exposure across the pollutants) and a sparse matrix (to identify unusual, unique, or extreme exposure events) \citep{candes2011robust}. PCP has several advantages over PCA in the area of pattern detection in environmental mixtures. In a recent PCP extension, square root PCP (\rootpcpc), Zhang et al. derived a new formulation with a universal choice of regularization parameter (\hl{ref ZHANG}). Thus, the user is not required to choose or tune hyperparameters. We combined this with a separate extension introducing a non-convex penalty on the low-rank matrix that performs well with data that may not have a strong underlying structure \citep{netrapalli2014non, chen2020bridging}. Estimation of the sparse matrix is especially advantageous. Traditional methods are sensitive to unusual or extreme exposure events; the patterns identified by PCP are not influenced by outlying values. Instead, exposures that are not explained by patterns in the low-rank matrix are separated in the sparse matrix and available for to the researcher.
+Here, we introduce a novel technique to identify patterns in environmental mixtures, adapting a robust and well-established method for data dimensionality reduction and pattern recognition in computer vision applications, principal component pursuit (PCP). PCP decomposes the exposure data matrix into a low-rank matrix (to identify underlying patterns of exposure across the pollutants) and a sparse matrix (to identify unusual, unique, or extreme exposure events) \citep{candes2011robust}. PCP has several advantages over PCA in the area of pattern detection in environmental mixtures. In a recent PCP extension, square root PCP (\rootpcpc), \citet{cite_zhang} derived a new formulation with a universal choice of regularization parameter. Thus, the user is not required to choose or tune hyperparameters. We combined this with a separate extension introducing a non-convex penalty on the low-rank matrix that performs well with data that may not have a strong underlying structure \citep{netrapalli2014non, chen2020bridging}. Estimation of the sparse matrix is especially advantageous. Traditional methods are sensitive to unusual or extreme exposure events; the patterns identified by PCP are not influenced by outlying values. Instead, exposures that are not explained by patterns in the low-rank matrix are separated in the sparse matrix and available for to the researcher.
 
 To our knowledge, this is the first time that PCP has been considered in pattern identification in environmental health or epidemiology. Additionally, we have included three novel extensions designed uniquely for chemical mixtures: (1) a distinct penalty for observations $<$ LOD (PCP-LOD) that has improved distributional assumptions over single imputation and adapts to study-specific confidence in measurement, (2) a non-negativity constraint on the low-rank matrix to improve interpretability of results, and (3) procedures to accommodate missing values. We also implemented a cross-validation approach (see ~\ref{methods:stat}) so that the choice of estimated components is not as subjective as in other methods. In this work, we conducted a simulation study based on a real multi-pollutant mixture, simulating an increasing proportion of observations measured $<$ LOD and varying levels and structure of added noise. We use these to compare PCP-LOD performance to that of PCA with values $<$ LOD imputed as LOD/$\sqrt{2}$. Finally, we applied PCP-LOD to an environmental health dataset of persistent organic pollutants (POPs) measured in the 2001--2002 cycle of the National Health and Nutrition Examination Study (NHANES) to identify consistent patterns of POP exposure while isolating unique or extreme events.
 
@@ -43,16 +43,16 @@ To our knowledge, this is the first time that PCP has been considered in pattern
 
 \subsection{Principal component pursuit}
 \label{methods:stat}
-We present PCP as a robust method for dimensionality reduction and pattern identification \citep{candes2011robust}. Given an exposure data matrix $X_{n,p}$, where $n$ is the number of participants and $p$ is the number of pollutants, PCP seeks to express $X$ as a superposition of two matrices: a low-rank matrix $L_{n,p}$ where $r = rank(L) \ll min(n,p)$, and a sparse matrix $S_{n,p}$ where most entries are zero. Because $L$ is of rank $r \ll p$, its rank can correspond to underlying patterns in exposure, such as specific sources or certain behaviors. $L$ is still defined in terms of the original variables, i.e., patterns are not directly estimated. PCP may be paired with various matrix factorization techniques (e.g., SVD, PCA, factor analysis, or NMF) to extract chemical loadings and individual scores. The rank of $L$ or the number or location of nonzero entries in $S$ do not need to be \textit{a priori} defined.
+We present PCP as a robust method for dimensionality reduction and pattern identification \citep{candes2011robust}. Given an exposure data matrix $X_{n,p}$, where $n$ is the number of participants and $p$ is the number of pollutants, PCP seeks to express $X$ as a superposition of two matrices: a low-rank matrix $L_{n,p}$ where $r = rank(L) \ll min(n,p)$, and a sparse matrix $S_{n,p}$ where most entries are zero. Because $L$ is of rank $r \ll p$, its rank can correspond to underlying patterns in exposure, such as specific sources or certain behaviors. $L$ is still defined in terms of the original variables, i.e., patterns are not directly estimated. PCP may be paired with various matrix factorization techniques (e.g., singular value decomposition (SVD), PCA, factor analysis, or NMF) to extract chemical loadings and individual scores. The rank of $L$ or the number or location of nonzero entries in $S$ do not need to be \textit{a priori} defined.
 
-We incorporated two PCP extensions that suit features of environmental mixtures data. First, Zhang et al. recently proposed \rootpcp with a noise-independent universal choice of regularization parameters (\hl{ref Zhang}). Previous formulations of PCP required knowledge of the true noise level to determine the appropriate parameters \citep{zhou2010stable, chen2015fast, chen2020bridging}. This is problematic in environmental mixtures where we cannot know or accurately estimate the underlying noise level, and it would leave the researcher with the subjective task of tuning parameters on a per-dataset basis. Zhang et al. provide a more practical approach to pattern recognition in environmental mixtures.
+We incorporated two PCP extensions that suit features of environmental mixtures data. First, \citet{cite_zhang} recently proposed \rootpcp with a noise-independent universal choice of regularization parameters. Previous formulations of PCP required knowledge of the true noise level to determine the appropriate parameters \citep{zhou2010stable, chen2015fast, chen2020bridging}. This is problematic in environmental mixtures where we cannot know or accurately estimate the underlying noise level, and it would leave the researcher with the subjective task of tuning parameters on a per-dataset basis. \citet{cite_zhang} provide a more practical approach to pattern recognition in environmental mixtures.
 
 As first proposed, PCP minimizes a weighted combination of the nuclear norm of $L$, $\|\boldsymbol{L}\|_{*}$, and the $\ell^1$ norm of $S$, $\|\boldsymbol{S}\|_{\ell^1}$ \citep{zhou2010stable}. Notably, this formulation has the desirable quality of convexity, meaning that every local optimum is a global optimum. This guarantees an efficiently solvable algorithm \citep{boyd2004convex}. In practice, however, the nuclear norm assumes a stronger low-rank structure (i.e., slowly decaying singular values) than what is the case in many real-life environmental mixtures (e.g., POPs or air pollution). To address unsatisfactory performance with the nuclear norm, we replaced it with a rank-$r$ projection. While the nuclear norm is convex, the rank-$r$ projection is not. However, it is accompanied by theoretical guarantees of equivalent performance with the convex implementation \citep{netrapalli2014non, chen2020bridging}. Combining a non-convex rank projection with \rootpcpc, we solve the following optimization problem:
 \begin{equation}\label{eqn:ncvxroot}
 \text{non-convex }\sqrt{PCP} := \hspace{0.5ex} \min _{L, S} \hspace{1ex} \mathbbm{1}_{rank(L) \le r} + \lambda\|S\|_{1} + \mu\|L+S-X\|_{F}
 \end{equation}
 
-where $X$ denotes the original data matrix. The two parameters, $\lambda$ and $\mu$, are not tuned by the researcher; instead, they are each set using single universal values, $\lambda = 1/\sqrt{n}$ from \citet{candes2011robust}, and $\mu = \sqrt{p/2}$ from (\hl{ref Zhang}) which have been theoretically proven as optimal. The indicator function $\mathbbm{1}_{rank(L) \le r}$ constrains $L$ to be of rank $\le r$; the $\ell^1$ norm $\|S\|_{1}$ is the sum of the absolute values of the entries of $S$ and encourages $S$ to be sparse; the final term is the error between the predicted and the observed values, which favors a solution that is close to the original data.
+where $X$ denotes the original data matrix. The two parameters, $\lambda$ and $\mu$, are not tuned by the researcher; instead, they are each set using single universal values, $\lambda = 1/\sqrt{n}$ from \citet{candes2011robust}, and $\mu = \sqrt{p/2}$ from \citet{cite_zhang}, which have been theoretically proven as optimal. The indicator function $\mathbbm{1}_{rank(L) \le r}$ constrains $L$ to be of rank $\le r$; the $\ell^1$ norm $\|S\|_{1}$ is the sum of the absolute values of the entries of $S$ and encourages $S$ to be sparse; the final term is the error between the predicted and the observed values, which favors a solution that is close to the original data.
 
 \subsubsection{Environmental Health-Relevant Extensions} 
 
@@ -84,20 +84,22 @@ We next generated individual scores ($n \times r$). We drew scores independently
 
 \begin{landscape}
 \begin{figure}
-\centering
+\flushright
 \begin{subfigure}[c]{0.7\textwidth}
 \includegraphics[width=1\linewidth]{./figures/loadings_plot.pdf}
 \caption{Patterns}
 \label{fig:simpatterns}
 \end{subfigure}
-\hspace{-0.5em}
+\hspace{-0.45em}
+%\hfill
+%\flushright
 \begin{subfigure}[c]{0.6\textwidth}
 \includegraphics[width=.95\linewidth]{./figures/sim_corr.pdf}
 \caption{Correlations}
 \label{fig:simcorr}
 \end{subfigure}
 \hfill
-\caption{\textbf{(a)} Representative simulated chemical loadings. We simulated 100 examples for mixture size $p$ = 16 (depicted here) and $p$ = 48. Here, two chemicals load solely on each of the four patterns. The remaining chemicals appear in two patterns each. \textbf{(b)} Correlation matrix of one simulated dataset ($p$ = 16) with high noise.}
+\caption[Simulated chemical loadings and correlation]{\textbf{(a)} Representative simulated chemical loadings. We simulated 100 examples for mixture size $p$ = 16 (depicted here) and $p$ = 48. Here, two chemicals load solely on each of the four patterns. The remaining chemicals appear in two patterns each. \textbf{(b)} Correlation matrix of one simulated dataset ($p$ = 16) with high noise.}
 \end{figure}
 \end{landscape}
 
@@ -112,7 +114,7 @@ To cross-validate PCP-LOD on a single dataset, $X$, we repeated the following st
 
 We ran PCP-LOD and PCA on all simulated datasets. We compared PCP-LOD and PCA to assess their relative performance when faced with large proportions of non-detectable observations. For PCP-LOD we estimated the rank of $\hat{L}$, the sparsity of $\hat{S}$, and their relative change to assess stability of the solution across increasing proportions of data $<$ LOD. Because the sparse matrix may contain non-zero values so close to zero as to be considered zero, we set a threshold above which to regard values as legitimate extreme exposures. We evaluated sparse events two standard deviations of the model residuals ($\hat{S} + \hat{\varepsilon}$), per chemical, from zero, i.e., $2 \times \sqrt{Var(X_{p}^{obs} - \hat{L}_{p}^{obs})}$, where $obs$ indicates values above the LOD in the simulated data.
 
-For both PCP-LOD and PCA, we calculated relative predictive error as the ratio of the error to the truth in terms of their Frobenius norm: $\left\lVert Truth - Predicted\right\rVert_F / \left\lVert  Truth\right\rVert_F$. For PCP-LOD we interpreted $\hat{L}$ as the predicted values, and for PCA we constructed predicted values as the product of the score matrix (i.e., the coordinates of the rotated data on the principal components) by the rotation matrix (i.e., right eigenvectors), truncated at the chosen rank. We defined the `truth' as simulated values before noise or sparse events were added. Finally, we assessed the stability of the identified patterns using the relative prediction error of the singular value decomposition (SVD).
+For both PCP-LOD and PCA, we calculated relative predictive error as the ratio of the error to the truth in terms of their Frobenius norm: $\left\lVert Truth - Predicted\right\rVert_F / \left\lVert  Truth\right\rVert_F$. For PCP-LOD we interpreted $\hat{L}$ as the predicted values, and for PCA we constructed predicted values as the product of the score matrix (i.e., the coordinates of the rotated data on the principal components) by the rotation matrix (i.e., right eigenvectors), truncated at the chosen rank. We defined the `truth' as simulated values before noise or sparse events were added. Finally, we assessed the stability of the identified patterns using the relative prediction error of the SVD.
 
 \subsection{Application}
 Prior to the application to the NHANES POP mixture, we examined distributional plots and descriptive statistics for all variables. We scaled all exposure concentrations by their standard deviations to make variances comparable across chemicals. The solution, thus, cannot be influenced by high-variance pollutants. We used PCP-LOD to separate unique events from underlying patterns. Following PCP, we extracted individual scores and pattern loadings from $\hat{L}$ using SVD. We compared scores, loadings, and overall relative error with those obtained from PCA. We present unique events and interpret observed patterns. All analyses were conducted using R version 4.0.4 \citep{rrr}.
@@ -124,21 +126,21 @@ Prior to the application to the NHANES POP mixture, we examined distributional p
 \begin{figure}
     \centering
 \includegraphics[width=.85\textwidth]{figures/sim_boxplots_16.pdf}
-   \caption{Overall relative predictive error of PCP-LOD and PCA on simulated data with $p$ = 16 across increasing proportions of data below the limit of detection. The panels show results for different structures of added noise. Box plots display summary statistics for each method across 100 simulations. The bottom and top hinges of the boxes correspond to the first and third quartiles (the 25$^{th}$ and 75$^{th}$ percentiles), respectively. The upper (lower) whiskers extend from the hinge to the largest (smallest) value no further than 1.5 $\times$ IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles).}
+   \caption[Overall relative prediction error of PCP-LOD and PCA  ($p$ = 16)]{Overall relative predictive error of PCP-LOD and PCA on simulated data with $p$ = 16 across increasing proportions of data below the limit of detection. The panels show results for different structures of added noise. Box plots display summary statistics for each method across 100 simulations. The bottom and top hinges of the boxes correspond to the first and third quartiles (the 25$^{th}$ and 75$^{th}$ percentiles), respectively. The upper (lower) whiskers extend from the hinge to the largest (smallest) value no further than 1.5 $\times$ IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles).}
     \label{fig:overall}
 \end{figure}
 
 \begin{figure}
     \centering
 \includegraphics[width=.75\textwidth]{figures/lod_boxplots_16.pdf}
-   \caption{Relative predictive error of PCP-LOD and PCA on simulated data with $p$ = 16 stratified by detection. The panel columns separate results from different structures of added noise, and the panel rows separate values that were simulated as observed (top row) from those simulated as below the limit of detection (bottom row). Box plots display summary statistics for each method across 100 simulations.}
+   \caption[Stratified relative prediction error of PCP-LOD and PCA ($p$ = 16)]{Relative predictive error of PCP-LOD and PCA on simulated data with $p$ = 16 stratified by detection. The panel columns separate results from different structures of added noise, and the panel rows separate values that were simulated as observed (top row) from those simulated as below the limit of detection (bottom row). Box plots display summary statistics for each method across 100 simulations.}
     \label{fig:above_below}
 \end{figure}
 
 \begin{figure}
     \centering
 \includegraphics[width=.75\textwidth]{figures/svd_boxplots_left.pdf}
-   \caption{Relative predictive error of PCP-LOD and PCA solution scores (i.e., left eigenvectors) compared with those of the simulated data before noise was added. The panel columns separate results from different structures of added noise, and panel rows present two simulated mixture sizes. Box plots display summary statistics for each method across 100 simulations.}
+   \caption[Relative prediction error of PCP-LOD and PCA left eigenvectors]{Relative predictive error of PCP-LOD and PCA solution scores (i.e., left eigenvectors) compared with those of the simulated data before noise was added. The panel columns separate results from different structures of added noise, and panel rows present two simulated mixture sizes. Box plots display summary statistics for each method across 100 simulations.}
     \label{fig:svd}
 \end{figure}
 
@@ -157,7 +159,7 @@ Across PCP-LOD solutions, between 2\% and 10\% of $\hat{S}$ entries were non-spa
 \begin{figure}
     \centering
 \includegraphics[scale=0.55]{figures/pop_detect.pdf}
-   \caption{Detection frequency of persistent organic pollutants measured in NHANES 2001--2002. All congeners to the right of the vertical dashed line were detected in $>$ 50\% of samples and included in the analysis.}
+   \caption[Detection frequency of POPs in NHANES 2001--2002]{Detection frequency of persistent organic pollutants measured in NHANES 2001--2002. All congeners to the right of the vertical dashed line were detected in $>$ 50\% of samples and included in the analysis.}
     \label{fig:detect}
 \end{figure}
 \end{landscape}
@@ -176,7 +178,7 @@ Across PCP-LOD solutions, between 2\% and 10\% of $\hat{S}$ entries were non-spa
 \caption{$\hat{L}$ matrix}
 \label{fig:nhanes_corr_l}
 \end{subfigure}
-\caption{\textbf{(a)} Spearman correlation matrix of 21 persistent organic pollutants measured in NHANES 2001--2002. Observations below the limit of detection were handled by case-wise deletion. \textbf{(b)} Spearman correlation matrix of low-rank structure across POPs estimated by PCP-LOD.}
+\caption[Correlation of 21 POPs in NHANES 2001--2002]{\textbf{(a)} Spearman correlation matrix of 21 persistent organic pollutants measured in NHANES 2001--2002. Observations below the limit of detection were handled by case-wise deletion. \textbf{(b)} Spearman correlation matrix of low-rank structure across POPs estimated by PCP-LOD.}
 \end{figure}
 \end{landscape}
 
@@ -184,7 +186,7 @@ Across PCP-LOD solutions, between 2\% and 10\% of $\hat{S}$ entries were non-spa
 \begin{figure}
     \centering
 \includegraphics[scale=0.55]{figures/loadings.pdf}
-   \caption{SVD-identified components of PCP-LOD $\hat{L}$ matrix of underlying POP exposure in 2001--2002 NHANES participants. PCP-LOD chose a three rank solution based on random hold-out cross-validation.}
+   \caption[Components underlying $\hat{L}$ of POPs in NHANES 2001--2002]{SVD-identified components of PCP-LOD $\hat{L}$ matrix of underlying POP exposure in 2001--2002 NHANES participants. PCP-LOD chose a three rank solution based on random hold-out cross-validation.}
     \label{fig:nhanes_load}
 \end{figure}
 \end{landscape}
@@ -202,7 +204,7 @@ PCA conducted on the POP mixture chose three components that explained $\ge$ 80\
 \begin{figure}
     \centering
 \includegraphics[scale=0.58]{figures/sparse_events.pdf}
-   \caption{PCP-LOD solution $\hat{S}$ matrix of sparse events of POP exposure in 2001--2002 NHANES participants. To facilitate visualization, we have categorized sparse values into high and low exposure events. Red indicates an extremely high exposure event $\left(> 2 \times \sqrt{Var(X_{p}^{obs} - L_{p}^{obs})}\right)$; blue indicates an extremely low exposure event $\left(< -2 \times \sqrt{Var(X_{p}^{obs} - L_{p}^{obs})}\right)$. White indicates sparsity. POPs (columns) and NHANES participants (rows) are hierarchically clustered to further facilitate visualization.}
+   \caption[Sparse POP events in NHANES 2001--2002  participants]{PCP-LOD solution $\hat{S}$ matrix of sparse events of POP exposure in 2001--2002 NHANES participants. To facilitate visualization, we have categorized sparse values into high and low exposure events. Red indicates an extremely high exposure event $\left(> 2 \times \sqrt{Var(X_{p}^{obs} - L_{p}^{obs})}\right)$; blue indicates an extremely low exposure event $\left(< -2 \times \sqrt{Var(X_{p}^{obs} - L_{p}^{obs})}\right)$. White indicates sparsity. POPs (columns) and NHANES participants (rows) are hierarchically clustered to further facilitate visualization.}
     \label{fig:sparse}
 \end{figure}
 \end{landscape}
@@ -210,7 +212,7 @@ PCA conducted on the POP mixture chose three components that explained $\ge$ 80\
 \begingroup
 \renewcommand{\arraystretch}{1.1}
 \begin{table} \centering 
-  \caption{Summary of extreme events captured in the sparse component of PCP-LOD from a mixture of 21 POPs measured in 1,000 participants in NHANES 2001--2002. Entries are counts of participants with uniquely low and/or high events, organized by row and column, respectively.}
+  \caption[Summary of extreme POP events in NHANES 2001--2002]{Summary of extreme events captured in the sparse component of PCP-LOD from a mixture of 21 POPs measured in 1,000 participants in NHANES 2001--2002. Entries are counts of participants with uniquely low and/or high events, organized by row and column, respectively.}
   \label{tab:sparse} 
 \begin{tabular}{@{\extracolsep{5pt}} c|r|rrrrrrr|r} 
 \hline 
@@ -266,7 +268,7 @@ To our knowledge, this work represents the first instance of decomposing the str
 \renewcommand{\arraystretch}{1.05}
 \begin{table}[!h]
 \centering
-\caption{Relative prediction error comparing PCA and PCP-LOD solutions with simulated data before noise or sparse events were added. Values represent $25^{th}$, $50^{th}$, and $75^{th}$ percentiles of error distribution over 200 simulations (100 for $p$ = 16; 100 for $p$ = 48).}
+\caption[Relative prediction error comparing PCA and PCP-LOD]{Relative prediction error comparing PCA and PCP-LOD solutions with simulated data before noise or sparse events were added. Values represent $25^{th}$, $50^{th}$, and $75^{th}$ percentiles of error distribution over 200 simulations (100 for $p$ = 16; 100 for $p$ = 48).}
 \label{table:supp}
 \begin{tabular}{lrrr|rrr|rrr}
   \hline
@@ -330,11 +332,10 @@ PCP-LOD & 0.41 & 0.42 & 0.44 & 0.60 & 0.62 & 0.63 & 0.88 & 0.97 & 1.03 \\
 \end{table}
 \endgroup
 
-
 \begin{figure}
     \centering
 \includegraphics[width=.85\textwidth]{figures/sim_boxplots_48.pdf}
-   \caption{Overall relative predictive error of PCP-LOD and PCA on simulated data with $p$ = 48 across increasing proportions of data below the limit of detection. The panels show results for different structures of added noise. Box plots display summary statistics for each method across 100 simulations. The bottom and top hinges of the boxes correspond to the first and third quartiles (the 25$^{th}$ and 75$^{th}$ percentiles), respectively. The upper (lower) whiskers extend from the hinge to the largest (smallest) value no further than 1.5 $\times$ IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles).}
+   \caption[Overall relative error of PCP-LOD and PCA ($p$ = 48)]{Overall relative predictive error of PCP-LOD and PCA on simulated data with $p$ = 48 across increasing proportions of data below the limit of detection. The panels show results for different structures of added noise. Box plots display summary statistics for each method across 100 simulations.}
     \label{fig:overall_48}
 \end{figure}
 
@@ -342,16 +343,14 @@ PCP-LOD & 0.41 & 0.42 & 0.44 & 0.60 & 0.62 & 0.63 & 0.88 & 0.97 & 1.03 \\
 \begin{figure}
     \centering
 \includegraphics[width=.75\textwidth]{figures/lod_boxplots_48.pdf}
-   \caption{Relative predictive error of PCP-LOD and PCA on simulated data with $p$ = 48 stratified by detection. The panel columns separate results from different structures of added noise, and the panel rows separate values that were simulated as observed (top row) from those simulated as below the limit of detection (bottom row). Box plots display summary statistics for each method across 100 simulations.}
+   \caption[Stratified relative error of PCP-LOD and PCA ($p$ = 48)]{Relative predictive error of PCP-LOD and PCA on simulated data with $p$ = 48 stratified by detection. The panel columns separate results from different structures of added noise, and the panel rows separate values that were simulated as observed (top row) from those simulated as below the limit of detection (bottom row). Box plots display summary statistics for each method across 100 simulations.}
     \label{fig:above_below_48}
 \end{figure}
 
 \begin{figure}
     \centering
 \includegraphics[width=.75\textwidth]{figures/svd_boxplots_right.pdf}
-   \caption{Relative estimation error of PCP-LOD and PCA solution chemical loadings (i.e., right eigenvectors) compared with those of the simulated data before noise was added. The panel columns separate results from different structures of added noise, and panel rows present two simulated mixture sizes. Box plots display summary statistics for each method across 100 simulations.}
+   \caption[Relative error of PCP-LOD and PCA right eigenvectors]{Relative estimation error of PCP-LOD and PCA solution chemical loadings (i.e., right eigenvectors) compared with those of the simulated data before noise was added. The panel columns separate results from different structures of added noise, and panel rows present two simulated mixture sizes. Box plots display summary statistics for each method across 100 simulations.}
     \label{fig:svd_right}
 \end{figure}
 } % put supplemental numbering in curly braces
-
-\clearpage
