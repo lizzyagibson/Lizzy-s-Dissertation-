@@ -6,6 +6,9 @@
 
 \maxtocdepth{subsection} % put 3 levels into the toc
 
+% ADDED to fix backrefs
+\pagenumbering{roman} 
+
 % Fill in title page
 
 % your title
@@ -45,7 +48,12 @@
 % Dedication
 \thededication
 
+% ADDED to fix backrefs
+% \setcounter{page}{1}   % resets the ROMAN page counter to 1 for the TOC
+% \pagenumbering{arabic} %change to arabic counting. Resets to 1 automatically
+
 \mainmatter % begin Arabic numbers pages from here on
+
 
 \input{./chapters/intro.tex}
 \input{./chapters/ch2.tex}
