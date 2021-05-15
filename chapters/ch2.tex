@@ -52,7 +52,7 @@ As first proposed, PCP minimizes a weighted combination of the nuclear norm of $
 \text{non-convex }\sqrt{PCP} := \hspace{0.5ex} \min _{L, S} \hspace{1ex} \mathbbm{1}_{rank(L) \le r} + \lambda\|S\|_{1} + \mu\|L+S-X\|_{F}
 \end{equation}
 
-where $X$ denotes the original data matrix. The two parameters, $\lambda$ and $\mu$, are not tuned by the researcher; instead, they are each set using single universal values, $\lambda = 1/\sqrt{n}$ from \citet{candes2011robust}, and $\mu = \sqrt{p/2}$ from \citet{cite_zhang}, which have been theoretically proven as optimal. The indicator function $\mathbbm{1}_{rank(L) \le r}$ constrains $L$ to be of rank $\le r$; the $\ell^1$ norm $\|S\|_{1}$ is the sum of the absolute values of the entries of $S$ and encourages $S$ to be sparse; the final term is the error between the predicted and the observed values, which favors a solution that is close to the original data.
+\noindent where $X$ denotes the original data matrix. The two parameters, $\lambda$ and $\mu$, are not tuned by the researcher; instead, they are each set using single universal values, $\lambda = 1/\sqrt{n}$ from \citet{candes2011robust}, and $\mu = \sqrt{p/2}$ from \citet{cite_zhang}, which have been theoretically proven as optimal. The indicator function $\mathbbm{1}_{rank(L) \le r}$ constrains $L$ to be of rank $\le r$; the $\ell^1$ norm $\|S\|_{1}$ is the sum of the absolute values of the entries of $S$ and encourages $S$ to be sparse; the final term is the error between the predicted and the observed values, which favors a solution that is close to the original data.
 
 \subsubsection{Environmental Health-Relevant Extensions} 
 
@@ -62,19 +62,19 @@ To better adapt non-convex \rootpcp (\ncpcpc) for use with environmental data, w
 \text{PCP-LOD} := \min _{L, S} &
   \begin{cases}
   \mathbbm{1}_{rank(L) \le r} + \lambda\|S\|_{1} + \mu\|L+S-X\|_{F} 
-  & \quad \text{if } X \ge \delta \\
+  & \text{if } X \ge \delta \\
   \mathbbm{1}_{rank(L) \le r} + \lambda\|S\|_{1} 
-  & \quad \text{if } X < \delta \ \& \ 0 \le (L+S) \le \delta \\
+  & \text{if } X < \delta \ \& \ 0 \le (L+S) \le \delta \\
   \mathbbm{1}_{rank(L) \le r} + \lambda\|S\|_{1} + \mu\|L+S-\delta\|_{F} 
-  & \quad \text{if } X < \delta \ \& \ (L+S) > \delta\\
+  & \text{if } X < \delta \ \& \ (L+S) > \delta\\
   \mathbbm{1}_{rank(L) \le r} + \lambda\|S\|_{1} + \mu\|L+S\|_{F} 
-  & \quad \text{if } X < \delta \ \& \ (L+S) < 0 \\
+  & \text{if } X < \delta \ \& \ (L+S) < 0 \\
   \end{cases} \\
   & \hspace{3ex} \text{such that } L \ge 0
 \end{aligned}
 \end{equation}
 
-Here, $\delta$ represents the LOD. This is an attribute of the data specified by the researcher; it can be common across all chemicals, chemical-specific, or chemical- and individual-specific, depending on the measurements. If all observations are $>$ LOD, this equation simplifies to Equation~\ref{eqn:ncvxroot}. For estimated values $>$ LOD (Equation~\ref{eqn:lod}, line 3) or $<0$ (Equation~\ref{eqn:lod}, line 4), we include more stringent penalties than in Equation~\ref{eqn:ncvxroot}, which act to push estimates to the known range. 
+\noindent Here, $\delta$ represents the LOD. This is an attribute of the data specified by the researcher; it can be common across all chemicals, chemical-specific, or chemical- and individual-specific, depending on the measurements. If all observations are $>$ LOD, this equation simplifies to Equation~\ref{eqn:ncvxroot}. For estimated values $>$ LOD (Equation~\ref{eqn:lod}, line 3) or $<0$ (Equation~\ref{eqn:lod}, line 4), we include more stringent penalties than in Equation~\ref{eqn:ncvxroot}, which act to push estimates to the known range. 
 
 \subsection{Simulations} We simulated 100 exposure matrices for all combinations of two mixture sizes, three noise structures, and three detection proportions (1800 total). We generated datasets of 500 observations each, $\left\{\mathbf{x}_{i}\right\}_{i=1}^{500},$ where $\mathbf{x}_{i} = \left(x_{i,1}, \ldots, x_{i,p}\right)^{\mathrm{T}}$ presents an exposure profile with $p$ mixture components. We specified $r = 4$ underlying patterns and investigated two mixture sizes ($p = 16$ and $p = 48$). We first simulated chemical loadings ($r \times p$) to represent realistic environmental patterns where some chemicals were distinct to a single pattern and some chemicals appeared in multiple patterns. Each pattern included $\dfrac{p}{8}$ chemicals that loaded distinctly and $\dfrac{p}{4}$ chemicals that overlapped with a second pattern. Distinct chemicals were given a loading of 1 on the single pattern on which they loaded and a loading of 0 for the remaining patterns. One third of the chemicals appeared in only one pattern; two thirds of the chemicals appeared in two pattern. This design corresponds to multiple environmental sources giving rise to the chemicals in the mixture. Overlapping chemicals were drawn from a Dirichlet distribution so that their loadings would sum to 1 over all patterns. Of the four loadings across the four patterns for each chemical, two were drawn from $\operatorname{Dir}(\alpha_1=1, \alpha_2=1)$ and two were set to zero. This introduced variability into the overlapping chemical loadings (Figure~\ref{fig:simpatterns}).
 
